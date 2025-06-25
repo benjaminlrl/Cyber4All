@@ -1,0 +1,25 @@
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url("/Cyber4All_web/images/background/background_logo.png") center top / cover no-repeat fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Animation pour le header fixe */
+@media (min-width: 769px) {
+    body {
+        padding-top: 80px; /* Compense le header fixe */
+    }
+}
+
