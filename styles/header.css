@@ -231,17 +231,3 @@
     }
 }
 
-@media (max-width: 480px) {
-    .header__titre {
-        font-size: 20px;
-    }
-
-    .header__logo {
-        width: 35px;
-        height: 35px;
-    }
-
-    .menu-nav__lien {
-        font-size: 14px;
-    }
-}

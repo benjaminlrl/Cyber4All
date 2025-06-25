@@ -1,4 +1,26 @@
 <?php
+include_once(__DIR__ . '/../lib/Connexion.php');
+include_once(__DIR__ . '/../lib/MotCle_CRUD.php');
+include_once(__DIR__ . '/../lib/MotCle.php');
+include_once(__DIR__ . '/../lib/Categorie.php');
+include_once(__DIR__ . '/../lib/Categorie_CRUD.php');
+
+use lib\Connexion;
+use lib\MotCle;
+use lib\MotCle_CRUD;
+use lib\Categorie;
+use lib\Categorie_CRUD;
+
+
+$id_session = session_id();
+if ($id_session):
+
+$pdo = new Connexion("user");
+$connexion = $pdo->setConnexion();
+if (is_a($connexion, "PDO")):
+    $crudCategorie = new Categorie_CRUD($connexion);
+    $categories = $crudCategorie->recupToutesLesCategories();
+endif
 ?>
 
 <header id="header-site" class="header-site">
@@ -25,60 +47,14 @@
                         Catégories
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a href="#"
+                        <?php foreach ($categories as $categorie):?>
+                        <a href="lexiques.php?categorie=<?= htmlspecialchars($categorie->getId())?>"
                            class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 1"
+                           title="Tout le lexique de la Catégorie <?= $categorie->getNom() ?>"
                            role="menuitem">
-                            Catégorie 1
+                            <?= $categorie->getNom() ?>
                         </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 2"
-                           role="menuitem">
-                            Catégorie 2
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 3"
-                           role="menuitem">
-                            Catégorie 3
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 4"
-                           role="menuitem">
-                            Catégorie 4
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 5"
-                           role="menuitem">
-                            Catégorie 5
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 6"
-                           role="menuitem">
-                            Catégorie 6
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 7"
-                           role="menuitem">
-                            Catégorie 7
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 8"
-                           role="menuitem">
-                            Catégorie 8
-                        </a>
-                        <a href="#"
-                           class="dropdown-menu__item"
-                           title="Tout le lexique de la Catégorie 9"
-                           role="menuitem">
-                            Catégorie 9
-                        </a>
+                        <?php endforeach;?>
                     </div>
                 </li>
                 <li class="menu-nav__item">
@@ -89,7 +65,7 @@
                     </a>
                 </li>
                 <li class="menu-nav__item">
-                    <a href="#"
+                    <a href="lexiques.php"
                        title="Tout le lexique de la cybersécurité"
                        class="menu-nav__lien">
                         Lexique
@@ -107,3 +83,4 @@
         </div>
     </div>
 </header>
+<?php endif ?>

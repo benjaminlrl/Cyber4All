@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <?php
 require_once("../includes/header.php");
 require_once("../includes/recherche.php");
-require_once("../includes/carroussel_definitions.php");
+require_once("../includes/afficherMotLexique.php");
 require_once("../includes/footer.php");
 ?>
 </body>

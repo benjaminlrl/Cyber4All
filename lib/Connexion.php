@@ -21,6 +21,7 @@ class Connexion
 
     /**
      * Initialise une nouvelle instance de la classe connexion
+     * en fonction du type d'utilisateur user ou admin.
      */
     public function __construct($typeUser)
     {
