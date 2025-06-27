@@ -43,6 +43,7 @@ if ($id_session):
 
         $crudMotCategorie = new MotCategorie_CRUD($connexion);
         foreach ($mots as $mot):
+            //récupere un tableau associatif avec tous le sid de categorie par mot
             $listeCategories[$mot->getId()] = $crudMotCategorie->recupToutesLesCategoriesDunMot($mot);
         endforeach;
 
@@ -51,19 +52,23 @@ if ($id_session):
 <div class="lexiques-wrapper">
     <?php if (!empty($mots)):
         if(!isset($_GET['categorie'])):?>
+        <div class="lexique-container-static">
             <div class="lexiques__title-static">
                 <h3 class="lexique__categorie-static"
                     data-category="8">Lexique de la cybersécurité
                     <?= !empty($recherche) ? " - ".$recherche : "" ;?>
                 </h3>
             </div>
+        </div>
             <?php endif;
                 if(isset($_GET['categorie']) && !empty($_GET['categorie'])):
                 ?>
+        <div class="lexique-container-static">
             <div class="lexiques__title-static">
                 <h3 class="lexique__categorie-static"
                     data-category="<?= $categorie->getId() ?>">Lexique de la catégorie : <?= $categorie->getNom()?></h3>
             </div>
+        </div>
            <?php endif;
     foreach ($mots as $mot):?>
         <div class="lexique-container">

@@ -100,8 +100,8 @@ class Categorie_CRUD
             if($results){
                 foreach($results as $result){
                     $categorie = new Categorie(
-                        $result->id,
-                        $result->nom
+                        $result->nom,
+                        $result->id
                     );
                     $categories[] = $categorie;
                 }
@@ -128,8 +128,8 @@ class Categorie_CRUD
             $categories=[];
             if($result){
                 $categorie = new Categorie(
-                    $result->id,
-                    $result->nom
+                    $result->nom,
+                    $result->id
                 );
             }
         }

@@ -1,7 +1,7 @@
 /* Footer Styles - Charte Graphique CYBER4ALL */
 footer {
-    background: var(--gradient-footer);
-    color: var(--text-footer);
+    background: var(--bg-gradient-footer);
+    color: var(--text-secondary);
     padding: 60px 0 20px 0;
     position: relative;
     margin-top: 7.8rem;
@@ -18,7 +18,7 @@ footer::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--primary-white);
+    background-color: var(--white);
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;
     opacity: 0.8;
@@ -50,7 +50,7 @@ footer::before {
 }
 
 .item h4 {
-    color: var(--text-medium);
+    color: var(--text-primary);
     font-size: 1.1em;
     font-weight: 600;
     margin-bottom: 8px;
@@ -59,7 +59,7 @@ footer::before {
 }
 
 .item p {
-    color: var(--text-footer);
+    color: var(--text-secondary);
     font-size: 0.95em;
     margin: 0;
     font-weight: 400;
@@ -77,15 +77,15 @@ footer::before {
 }
 
 .footer-lien a {
-    color: var(--text-footer);
+    color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.95em;
     font-weight: 400;
-    transition: var(--transition-fast);
+    transition: color 0.3s ease;
 }
 
 .footer-lien a:hover {
-    color: var(--text-hover);
+    color: var(--blue-link);
     text-decoration: underline;
 }
 
@@ -94,7 +94,7 @@ footer::before {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 40px 0 40px;
-    border-top: 1px solid var(--border-gray);
+    border-top: 1px solid var(--gray-border);
     position: relative;
     z-index: 2;
 }
@@ -109,21 +109,21 @@ footer::before {
 }
 
 .reglementation-lien {
-    color: var(--text-footer);
+    color: var(--text-secondary);
     font-size: 0.9em;
     font-weight: 400;
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: color 0.3s ease;
 }
 
 .reglementation-lien:hover {
-    color: var(--text-hover);
+    color: var(--blue-link);
     text-decoration: underline;
 }
 
 /* Copyright */
 .footer-copyright {
-    color: var(--text-footer);
+    color: var(--text-secondary);
     font-size: 0.9em;
     font-weight: 400;
     margin: 0;

@@ -14,7 +14,7 @@ class Categorie
      * @param int $id
      * @param string $nom
      */
-    public function __construct(int $id = 0, string $nom){
+    public function __construct( string $nom, int $id = 0){
         //id autoincrément
         $this->id = $id;
         $this->nom = $nom;

@@ -12,13 +12,13 @@
     justify-self: center;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--bg-glass-subtle);
     backdrop-filter: blur(20px);
     border-radius: 50px;
     padding: 8px;
-    box-shadow: var(--shadow-light);
-    border: 1px solid var(--border-white);
-    transition: var(--transition-fast);
+    box-shadow: 0 8px 32px var(--shadow-light);
+    border: 1px solid var(--border-glass-subtle);
+    transition: all 0.3s ease;
     overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: var(--gradient-shimmer);
     transition: left 0.8s;
 }
 
@@ -38,33 +38,33 @@
 }
 
 .form-recherche:focus-within {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-medium);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: var(--bg-glass-medium);
+    box-shadow: 0 12px 40px var(--shadow-medium);
+    border: 1px solid var(--border-glass-medium);
     transform: translateY(-2px);
 }
 
 /* Champ de saisie */
 .recherche-input {
     flex: 1;
-    background: var(--bg-transparent);
+    background: var(--transparent);
     border: none;
     outline: none;
     padding: 18px 24px;
     font-size: 1.1rem;
-    color: var(--text-dark);
+    color: var(--text-title);
     font-weight: 500;
     width: 100%;
 }
 
 .recherche-input::placeholder {
-    color: var(--border-gray);
+    color: var(--text-placeholder-alt);
     font-weight: 400;
-    transition: color var(--transition-fast);
+    transition: color 0.3s ease;
 }
 
 .recherche-input:focus::placeholder {
-    color: rgba(74, 85, 104, 0.5);
+    color: var(--text-placeholder-focus);
 }
 
 /* Icône de recherche avec CSS pur */
@@ -81,16 +81,16 @@
 
 /* Bouton de soumission */
 .recherche-bouton-soumission {
-    background: var(--gradient-carousel);
-    color: var(--primary-white);
+    background: var(--gradient-primary);
+    color: var(--white);
     border: none;
     border-radius: 40px;
     padding: 18px 32px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition-fast);
-    box-shadow: var(--shadow-button);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-button);
     position: relative;
     overflow: hidden;
     white-space: nowrap;
@@ -104,7 +104,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: var(--gradient-shimmer-button);
     transition: left 0.5s;
 }
 
@@ -114,17 +114,17 @@
 
 .recherche-bouton-soumission:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-button-hover);
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    box-shadow: 0 6px 20px var(--shadow-button-hover);
+    background: var(--gradient-primary-hover);
 }
 
 .recherche-bouton-soumission:active {
     transform: translateY(0);
-    box-shadow: var(--shadow-button);
+    box-shadow: 0 2px 10px var(--shadow-button);
 }
 
 .recherche-bouton-soumission:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline: 2px solid var(--color-focus-outline);
     outline-offset: 2px;
 }
 
@@ -136,7 +136,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.2rem;
-    color: var(--border-gray);
+    color: rgba(74, 85, 104, 0.6);
     pointer-events: none;
     z-index: 1;
 }
@@ -157,13 +157,13 @@
 
 /* États de validation */
 .form-recherche.success {
-    border: 1px solid rgba(72, 187, 120, 0.5);
-    background: rgba(72, 187, 120, 0.1);
+    border: 1px solid var(--color-success);
+    background: var(--bg-hover-success);
 }
 
 .form-recherche.error {
-    border: 1px solid rgba(245, 101, 101, 0.5);
-    background: rgba(245, 101, 101, 0.1);
+    border: 1px solid var(--color-error);
+    background: var(--bg-hover-error);
     animation: shake 0.5s ease-in-out;
 }
 
@@ -216,15 +216,15 @@
 @media (max-width: 480px) {
     .form-recherche {
         flex-direction: column;
-        border-radius: var(--border-radius-large);
+        border-radius: 20px;
         padding: 12px;
         gap: 12px;
     }
 
     .recherche-input {
         padding: 16px 20px;
-        border-radius: var(--border-radius-medium);
-        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        background: var(--bg-glass-ultra-subtle);
         text-align: center;
     }
 
@@ -234,14 +234,14 @@
 
     .recherche-bouton-soumission {
         width: 100%;
-        border-radius: var(--border-radius-medium);
+        border-radius: 15px;
         min-width: auto;
     }
 }
 
 /* Effet de focus avancé */
 .recherche-input:focus {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-glass-minimal);
 }
 
 /* Placeholder personnalisé selon le contexte */
@@ -264,13 +264,16 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top: 2px solid var(--primary-white);
-    border-radius: var(--border-radius-circle);
+    border: 2px solid var(--color-spinner-track);
+    border-top: 2px solid var(--color-spinner-active);
+    border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.form-recherche{
+    animation: fadeInUp 0.6s ease-out;
 }

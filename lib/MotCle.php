@@ -4,31 +4,28 @@ namespace lib;
 /**
  * Cette classe représente un Mot clé
  * Un mot dispose d'un id, d'un Mot
- * d'une catégorie optionnelle et d'une définition.
+ * et d'une définition.
  */
 class MotCle
 {
     private int $id;
     private string $mot;
     private string $definition;
-    private ?string $categorie;
 
     /**
      * Instancie une nouvelle instance de la classe MotCle
      * Un mot dispose d'un id, d'un Mot
-     * d'une définition et d'une catégorie optionnelle.
+     * d'une définition optionnelle.
      * @param int $id
      * @param string $mot
      * @param string $definition
-     * @param ?string $categorie
      */
-    public function __construct(int $id=0, string $mot, string $definition, ?string $categorie=null)
+    public function __construct(string $mot, string $definition, int $id=0)
     {
         //id à 0 pour incrémenter
         $this->id = $id;
         $this->mot = $mot;
         $this->definition = $definition;
-        $this->categorie = $categorie;
     }
 
     /**
@@ -58,25 +55,6 @@ class MotCle
     public function getMot(): string
     {
         return $this->mot;
-    }
-
-    /**
-     * Obtient la catégorie du mot actuel
-     * @return string|null
-     */
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    /**
-     * Modifie la catégorie du mot actuel
-     * @param string|null $categorie
-     * @return void
-     */
-    public function setCategorie(?string $categorie): void
-    {
-        $this->categorie = $categorie;
     }
 
     /**

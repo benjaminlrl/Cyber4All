@@ -45,9 +45,9 @@ class MotCategorie_CRUD
             if($results){
                 foreach($results as $result){
                     $mot = new motCle(
-                        $result->id,
                         $result->mot,
-                        $result->definition
+                        $result->definition,
+                        $result->id
                     );
                     $mots[] = $mot;
                 }
@@ -73,7 +73,6 @@ class MotCategorie_CRUD
              ORDER BY M.mot ASC");
         $req_select->bindParam(":id",$categorieID, PDO::PARAM_INT);
 
-        $results=$req_select->fetchAll(PDO::FETCH_OBJ);
         try {
             $req_select->execute();
             $results=$req_select->fetchAll(PDO::FETCH_OBJ);
@@ -81,9 +80,9 @@ class MotCategorie_CRUD
             if($results){
                 foreach($results as $result){
                     $mot = new motCle(
-                        $result->id,
                         $result->mot,
-                        $result->definition
+                        $result->definition,
+                        $result->id
                     );
                     $mots[] = $mot;
                 }
@@ -117,8 +116,8 @@ class MotCategorie_CRUD
             if($results){
                 foreach($results as $result){
                     $categorie = new Categorie(
-                        $result->id,
-                        $result->nom
+                        $result->nom,
+                        $result->id
                     );
                     $categories[] = $categorie;
                 }

@@ -1,0 +1,50 @@
+@import 'colors.css';
+@import 'afficherMots.css';
+@import 'footer.css';
+@import 'formConnexion.css';
+@import 'header.css';
+@import 'caroussel.css';
+@import 'monCompte.css';
+@import 'recherche.css';
+/* ========== VARIABLES CSS GLOBALES - CYBER4ALL ========== */
+
+/* ========================================
+   CYBER4ALL - Système de couleurs unifié
+   Fichier centralisé pour toutes les couleurs
+   ======================================== */
+
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("/Cyber4All_web/images/background/background_logo.png") center top / cover no-repeat fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem 0;
+}
+
+/* Animation pour le header fixe */
+@media (min-width: 769px) {
+    body {
+        padding-top: 80px; /* Compense le header fixe */
+    }
+}
+

@@ -100,9 +100,9 @@ class MotCle_CRUD
             if($results){
                 foreach($results as $result){
                     $mot = new motCle(
-                        $result->id,
                         $result->mot,
-                        $result->definition
+                        $result->definition,
+                        $result->id
                     );
                     $mots[] = $mot;
                 }
@@ -166,9 +166,9 @@ class MotCle_CRUD
             if($results){
                 foreach($results as $result){
                     $mot = new motCle(
-                        $result->id,
                         $result->mot,
-                        $result->definition
+                        $result->definition,
+                        $result->id
                     );
                     $mots[] = $mot;
                 }
