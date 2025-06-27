@@ -1,5 +1,5 @@
 <?php
-include_once('../index.html');
+include_once('../enTete.html');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

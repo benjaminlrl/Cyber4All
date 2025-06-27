@@ -112,4 +112,30 @@ class Categorie_CRUD
         }
         return $categories;
     }
+
+    /**
+     * recupCategorieParID permet de récupérer la catégorie de la table categorie
+     * par son id
+     * @return array
+     */
+    public function recupCategorieParID(int $id): Categorie{
+        $req_select=$this->db->prepare("SELECT * FROM categorie 
+                                        WHERE id = :id");
+        $req_select->bindValue(':id', $id, PDO::PARAM_INT);
+        try {
+            $req_select->execute();
+            $result=$req_select->fetch(PDO::FETCH_OBJ);
+            $categories=[];
+            if($result){
+                $categorie = new Categorie(
+                    $result->id,
+                    $result->nom
+                );
+            }
+        }
+        catch(PDOException $e) {
+            error_log("Erreur recupToutesLesCategories : " . $e->getMessage());
+        }
+        return $categorie;
+    }
 }

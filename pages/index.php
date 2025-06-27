@@ -1,8 +1,12 @@
 <?php
-include_once('../index.html');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if(isset($_POST['deconnexion'])){
+    session_destroy();
+    session_start();
+}
+include_once('../enTete.html');
 ?>
 <body id="top">
 <?php

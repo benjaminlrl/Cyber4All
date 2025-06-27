@@ -40,10 +40,9 @@ endif
                     <?= $mot->getDefinition();?>
                 </p>
                 <?php
-                // Récupérer les catégories spécifiques à ce mot
                 $categoriesDuMot = $listeCategories[$mot->getId()] ?? [];
-                foreach ($categoriesDuMot as $categorie): ?>
-                    <a href="lexiques.php?categorie=<?= $categorie->getId()?>" class="slide__categorie"
+                foreach ($categoriesDuMot as $categorie):?>
+                    <a href="lexiques.php?categorie=<?= $categorie->getId()?>" class="lexique__categorie"
                        title="Catégorie du mot" data-category="<?= $categorie->getId() ?>">
                         <?= $categorie->getNom() ?>
                     </a>

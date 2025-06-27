@@ -156,6 +156,7 @@ class MotCle_CRUD
              INNER JOIN categorie C ON Mc.id_categorie=C.id
              WHERE M.mot LIKE :filtre
              OR C.nom LIKE :filtre
+             OR M.definition LIKE :filtre
              ORDER BY M.mot ASC");
         $req_select->bindValue(':filtre','%'.$filtre.'%', PDO::PARAM_STR);
         try {

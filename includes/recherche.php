@@ -7,8 +7,9 @@
         <input type="search"
                class="recherche-input"
                name="recherche"
+               maxlength="100"
                value=""
-                placeholder="Explorez les termes clés de la cybersécurité !">
+               placeholder="Explorez les termes clés de la cybersécurité !">
         <button
             type="submit"
             class="recherche-bouton-soumission">Rechercher</button>

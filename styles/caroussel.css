@@ -8,20 +8,20 @@
 
 .caroussel__wrapper {
     position: relative;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--bg-glass);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     padding: 40px;
     margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-white);
     overflow: hidden;
 }
 
 /* Container des slides */
 .caroussel-slides {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform var(--transition-slow);
 }
 
 /* Slide individuelle */
@@ -29,13 +29,13 @@
     min-width: 100%;
     text-align: center;
     padding: 20px 40px;
-    color: #2d3748;
+    color: var(--text-medium);
 }
 
 .slide__title {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 700;
-    color: #1a202c;
+    color: var(--text-dark);
     margin-bottom: 24px;
     line-height: 1.2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@
 .slide__definition {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
     line-height: 1.6;
-    color: #4a5568;
+    color: var(--text-tertiary);
     margin-bottom: 32px;
     max-width: min(600px, 100%);
     margin-left: auto;
@@ -56,15 +56,15 @@
 
 .slide__categorie {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--gradient-carousel);
+    color: var(--primary-white);
     padding: 12px 28px;
-    border-radius: 25px;
+    border-radius: var(--border-radius-pill);
     text-decoration: none;
     font-weight: 600;
     font-size: clamp(0.9rem, 2vw, 1rem);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-button);
     position: relative;
     overflow: hidden;
     min-width: fit-content;
@@ -87,7 +87,7 @@
 
 .slide__categorie:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-button-hover);
 }
 
 /* Boutons de contrôle */
@@ -98,12 +98,12 @@
     transform: translateY(-50%);
     width: clamp(40px, 5vw, 50px);
     height: clamp(40px, 5vw, 50px);
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-glass-hover);
     border: none;
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-control);
     z-index: 10;
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@
     content: '‹';
     font-size: clamp(18px, 3vw, 24px);
     font-weight: bold;
-    color: #4a5568;
+    color: var(--text-tertiary);
     line-height: 1;
 }
 
@@ -122,7 +122,7 @@
     content: '›';
     font-size: clamp(18px, 3vw, 24px);
     font-weight: bold;
-    color: #4a5568;
+    color: var(--text-tertiary);
     line-height: 1;
 }
 
@@ -136,9 +136,9 @@
 
 .caroussel-controle-precedent:hover,
 .caroussel-controle-suivant:hover {
-    background: white;
+    background: var(--bg-white);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-control-hover);
 }
 
 .caroussel-controle-precedent:active,
@@ -158,11 +158,11 @@
 .caroussel-indicateur {
     width: clamp(10px, 1.5vw, 12px);
     height: clamp(10px, 1.5vw, 12px);
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     border: none;
     background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-fast);
     position: relative;
     min-width: 10px;
     min-height: 10px;
@@ -176,13 +176,13 @@
     transform: translate(-50%, -50%);
     width: 0;
     height: 0;
-    background: white;
-    border-radius: 50%;
-    transition: all 0.3s ease;
+    background: var(--primary-white);
+    border-radius: var(--border-radius-circle);
+    transition: all var(--transition-fast);
 }
 
 .caroussel-indicateur.actif {
-    background: white;
+    background: var(--primary-white);
     transform: scale(1.2);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -209,12 +209,12 @@
 .caroussel-controle-precedent:focus,
 .caroussel-controle-suivant:focus,
 .caroussel-indicateur:focus {
-    outline: 2px solid #667eea;
+    outline: 2px solid var(--accent-purple);
     outline-offset: 2px;
 }
 
 .slide__categorie:focus {
-    outline: 2px solid white;
+    outline: 2px solid var(--primary-white);
     outline-offset: 2px;
 }
 
@@ -268,7 +268,7 @@
 
     .caroussel__wrapper {
         padding: 30px 25px;
-        border-radius: 15px;
+        border-radius: var(--border-radius-medium);
     }
 
     .slide {
@@ -310,7 +310,7 @@
     .caroussel__wrapper {
         margin: 0 0 30px 0;
         padding: 25px 20px;
-        border-radius: 12px;
+        border-radius: var(--border-radius-medium);
     }
 
     .slide {
@@ -323,7 +323,7 @@
 
     .slide__categorie {
         padding: 10px 22px;
-        border-radius: 20px;
+        border-radius: var(--border-radius-xl);
     }
 
     /* Masquer les boutons de contrôle sur mobile */
@@ -349,7 +349,7 @@
     .caroussel__wrapper {
         margin: 0 0 20px 0;
         padding: 20px 15px;
-        border-radius: 10px;
+        border-radius: var(--border-radius-small);
     }
 
     .slide {
@@ -398,7 +398,7 @@
 
     .caroussel__wrapper {
         padding: 15px 10px;
-        border-radius: 8px;
+        border-radius: var(--border-radius-small);
     }
 
     .slide {
@@ -477,4 +477,3 @@
         transition: none;
     }
 }
-

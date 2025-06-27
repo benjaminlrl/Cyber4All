@@ -1,9 +1,10 @@
 /* Header principal */
 .header-site{
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-glass);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid var(--border-white);
+    box-shadow: rgba(26, 32, 44, 0.27) 0 0 15px;
     padding: 15px 0;
     position: fixed;
     top: 0;
@@ -41,12 +42,12 @@
 .header__titre {
     font-size: 24px;
     font-weight: 700;
-    color: #4a5568;
+    color: var(--text-footer);
     margin: 0;
 }
 
 .header__titre--accent {
-    color: #667eea;
+    color: var(--accent-purple);
 }
 
 /* Navigation principale */
@@ -69,19 +70,19 @@
 }
 
 .menu-nav__lien {
-    color: #4a5568;
+    color: var(--text-footer);
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
     padding: 10px 15px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border-radius: var(--border-radius-small);
+    transition: var(--transition-fast);
     display: block;
     position: relative;
 }
 
 .menu-nav__lien:hover {
-    color: #667eea;
+    color: var(--accent-purple);
     background: rgba(102, 126, 234, 0.1);
     transform: translateY(-2px);
 }
@@ -95,7 +96,7 @@
     content: '▼';
     font-size: 12px;
     margin-left: 8px;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-fast);
 }
 
 .menu-nav__item--dropdown:hover .menu-nav__lien--dropdown::after {
@@ -107,19 +108,19 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-glass-hover);
     backdrop-filter: blur(15px);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-medium);
     min-width: 220px;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-10px);
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     z-index: 1001;
     overflow: hidden;
     margin-top: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border-white);
 }
 
 .menu-nav__item--dropdown:hover .dropdown-menu {
@@ -130,10 +131,10 @@
 
 .dropdown-menu__item {
     display: block;
-    color: #4a5568;
+    color: var(--text-footer);
     text-decoration: none;
     padding: 12px 20px;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     font-size: 14px;
 }
@@ -144,7 +145,7 @@
 
 .dropdown-menu__item:hover {
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: var(--accent-purple);
     padding-left: 30px;
 }
 
@@ -152,26 +153,35 @@
 .header__connexion {
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 .btn-connexion {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--gradient-carousel);
+    color: var(--primary-white);
     text-decoration: none;
     padding: 12px 24px;
-    border-radius: 25px;
+    border-radius: var(--border-radius-pill);
     font-weight: 600;
     font-size: 14px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-button);
     border: none;
     cursor: pointer;
 }
 
 .btn-connexion:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-button-hover);
     background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.btn-deconnexion{
+    border: none;
+    background: none;
+    color: var(--primary-white);
+    font-weight: 600;
+    font-size: 14px;
 }
 
 /* Responsive */
@@ -212,7 +222,7 @@
         border-radius: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height var(--transition-fast);
     }
 
     .menu-nav__item--dropdown.active .dropdown-menu {
@@ -230,4 +240,3 @@
         text-align: center;
     }
 }
-

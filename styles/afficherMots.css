@@ -4,20 +4,19 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    min-height: 100vh;
+    min-height: 60vh;
     backdrop-filter: blur(5px);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .lexique-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-glass);
     backdrop-filter: blur(10px);
-    border-radius: 16px;
+    border-radius: var(--border-radius-large);
     padding: 24px;
     margin-bottom: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-medium);
     position: relative;
     overflow: hidden;
 }
@@ -29,7 +28,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #00d4ff, #5b9bd5, #8a2be2, #ff6b9d, #ffa500);
+    background: var(--gradient-main);
     background-size: 300% 300%;
     animation: gradientShift 8s ease infinite;
 }
@@ -42,53 +41,73 @@
 
 .lexique-container:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-medium);
+    background: var(--bg-glass-hover);
 }
 
+.lexiques__title{
+    grid-column: 1 / -1;
+}
+
+.lexiques__title .lexique__categorie-static{
+    font-size: 1.5rem;
+}
+
+.lexiques__title-static,
 .lexique__title {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0 0 12px 0;
     line-height: 1.3;
-    transition: color 0.3s ease;
+    transition: var(--transition-fast);
     cursor: pointer;
 }
 
 .lexique__title:hover {
-    color: #3498db;
+    color: var(--focus-color);
 }
 
 .lexique__definition {
-    color: #5a6c7d;
+    color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.6;
     margin: 0 0 16px 0;
     text-align: justify;
-    transition: color 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .lexique-container:hover .lexique__definition {
-    color: #34495e;
+    color: var(--text-gray);
 }
 
+.lexique__categorie-static,
 .lexique__categorie {
     display: inline-block;
     padding: 8px 16px;
-    background: linear-gradient(135deg, #74b9ff, #0984e3);
-    color: white;
+    background: var(--gradient-blue);
+    color: var(--primary-white);
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     font-size: 0.875rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
+.lexiques__title-static{
+    grid-column: 1 /-1;
+    cursor: default;
+}
+
+.lexique__categorie-static{
+    font-size: 1.8rem;
+}
+
+.lexique__categorie-static::before,
 .lexique__categorie::before {
     content: '';
     position: absolute;
@@ -106,554 +125,571 @@
 
 .lexique__categorie:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(116, 185, 255, 0.4);
-    background: linear-gradient(135deg, #0984e3, #74b9ff);
+    box-shadow: 0 4px 20px var(--category-8-shadow);
+    background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue));
 }
 
 /* Variantes de couleurs pour les catégories */
+.lexique__categorie-static[data-category="1"],
 .lexique__categorie[data-category="1"] {
-    background: linear-gradient(135deg, #ff7675, #e17055);
+    background: var(--category-1-bg);
 }
 
 .lexique__categorie[data-category="1"]:hover {
     background: linear-gradient(135deg, #e17055, #ff7675);
-    box-shadow: 0 4px 20px rgba(255, 118, 117, 0.4);
+    box-shadow: 0 4px 20px var(--category-1-shadow);
 }
 
+.lexique__categorie-static[data-category="2"],
 .lexique__categorie[data-category="2"] {
-    background: linear-gradient(135deg, #fd79a8, #e84393);
+    background: var(--category-2-bg);
 }
 
 .lexique__categorie[data-category="2"]:hover {
     background: linear-gradient(135deg, #e84393, #fd79a8);
-    box-shadow: 0 4px 20px rgba(253, 121, 168, 0.4);
+    box-shadow: 0 4px 20px var(--category-2-shadow);
 }
 
+.lexique__categorie-static[data-category="3"],
 .lexique__categorie[data-category="3"] {
-    background: linear-gradient(135deg, #fdcb6e, #e17055);
+    background: var(--category-3-bg);
 }
 
 .lexique__categorie[data-category="3"]:hover {
     background: linear-gradient(135deg, #e17055, #fdcb6e);
-    box-shadow: 0 4px 20px rgba(253, 203, 110, 0.4);
+    box-shadow: 0 4px 20px var(--category-3-shadow);
 }
 
+.lexique__categorie-static[data-category="4"],
 .lexique__categorie[data-category="4"] {
-    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    background: var(--category-4-bg);
 }
 
 .lexique__categorie[data-category="4"]:hover {
     background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    box-shadow: 0 4px 20px rgba(162, 155, 254, 0.4);
+    box-shadow: 0 4px 20px var(--category-4-shadow);
 }
 
+.lexique__categorie-static[data-category="5"],
 .lexique__categorie[data-category="5"] {
-    background: linear-gradient(135deg, #00cec9, #00b894);
+    background: var(--category-5-bg);
 }
 
 .lexique__categorie[data-category="5"]:hover {
     background: linear-gradient(135deg, #00b894, #00cec9);
-    box-shadow: 0 4px 20px rgba(0, 206, 201, 0.4);
+    box-shadow: 0 4px 20px var(--category-5-shadow);
 }
 
 /* Catégorie 6 - Rouge/Orange */
+.lexique__categorie-static[data-category="6"],
 .lexique__categorie[data-category="6"] {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    background: var(--category-6-bg);
 }
 
 .lexique__categorie[data-category="6"]:hover {
     background: linear-gradient(135deg, #ee5a52, #ff6b6b);
-    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 4px 20px var(--category-6-shadow);
 }
 
 /* Catégorie 7 - Violet/Mauve */
+.lexique__categorie-static[data-category="7"],
 .lexique__categorie[data-category="7"] {
-    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    background: var(--category-7-bg);
 }
 
 .lexique__categorie[data-category="7"]:hover {
     background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    box-shadow: 0 4px 20px rgba(162, 155, 254, 0.4);
+    box-shadow: 0 4px 20px var(--category-7-shadow);
 }
 
 /* Catégorie 8 - Bleu océan */
+.lexique__categorie-static[data-category="8"],
 .lexique__categorie[data-category="8"] {
-    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    background: var(--category-8-bg);
 }
 
 .lexique__categorie[data-category="8"]:hover {
-    background: linear-gradient(135deg, #0984e3, #74b9ff);
-    box-shadow: 0 4px 20px rgba(116, 185, 255, 0.4);
+    background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue));
+    box-shadow: 0 4px 20px var(--category-8-shadow);
 }
 
 /* Catégorie 9 - Rose/Fuchsia */
+.lexique__categorie-static[data-category="10"],
 .lexique__categorie[data-category="9"] {
-    background: linear-gradient(135deg, #fd79a8, #e84393);
+    background: var(--category-9-bg);
 }
 
 .lexique__categorie[data-category="9"]:hover {
     background: linear-gradient(135deg, #e84393, #fd79a8);
-    box-shadow: 0 4px 20px rgba(253, 121, 168, 0.4);
+    box-shadow: 0 4px 20px var(--category-9-shadow);
 }
 
 /* Catégorie 10 - Vert lime */
+.lexique__categorie-static[data-category="10"],
 .lexique__categorie[data-category="10"] {
-    background: linear-gradient(135deg, #55efc4, #00b894);
+    background: var(--category-10-bg);
 }
 
 .lexique__categorie[data-category="10"]:hover {
     background: linear-gradient(135deg, #00b894, #55efc4);
-    box-shadow: 0 4px 20px rgba(85, 239, 196, 0.4);
+    box-shadow: 0 4px 20px var(--category-10-shadow);
 }
 
 /* Catégorie 11 - Orange vif */
+.lexique__categorie-static[data-category="11"],
 .lexique__categorie[data-category="11"] {
-    background: linear-gradient(135deg, #fdcb6e, #e17055);
+    background: var(--category-11-bg);
 }
 
 .lexique__categorie[data-category="11"]:hover {
     background: linear-gradient(135deg, #e17055, #fdcb6e);
-    box-shadow: 0 4px 20px rgba(253, 203, 110, 0.4);
+    box-shadow: 0 4px 20px var(--category-11-shadow);
 }
 
 /* Catégorie 12 - Bleu nuit */
+.lexique__categorie-static[data-category="12"],
 .lexique__categorie[data-category="12"] {
-    background: linear-gradient(135deg, #2d3436, #636e72);
+    background: var(--category-12-bg);
 }
 
 .lexique__categorie[data-category="12"]:hover {
     background: linear-gradient(135deg, #636e72, #2d3436);
-    box-shadow: 0 4px 20px rgba(45, 52, 54, 0.4);
+    box-shadow: 0 4px 20px var(--category-12-shadow);
 }
 
 /* Catégorie 13 - Jaune doré */
+.lexique__categorie-static[data-category="13"],
 .lexique__categorie[data-category="13"] {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: var(--category-13-bg);
 }
 
 .lexique__categorie[data-category="13"]:hover {
     background: linear-gradient(135deg, #e67e22, #f39c12);
-    box-shadow: 0 4px 20px rgba(243, 156, 18, 0.4);
+    box-shadow: 0 4px 20px var(--category-13-shadow);
 }
 
 /* Catégorie 14 - Turquoise */
+.lexique__categorie-static[data-category="14"],
 .lexique__categorie[data-category="14"] {
-    background: linear-gradient(135deg, #16a085, #1abc9c);
+    background: var(--category-14-bg);
 }
 
 .lexique__categorie[data-category="14"]:hover {
     background: linear-gradient(135deg, #1abc9c, #16a085);
-    box-shadow: 0 4px 20px rgba(22, 160, 133, 0.4);
+    box-shadow: 0 4px 20px var(--category-14-shadow);
 }
 
 /* Catégorie 15 - Bordeaux */
+.lexique__categorie-static[data-category="15"],
 .lexique__categorie[data-category="15"] {
-    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    background: var(--category-15-bg);
 }
 
 .lexique__categorie[data-category="15"]:hover {
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
-    box-shadow: 0 4px 20px rgba(142, 68, 173, 0.4);
+    box-shadow: 0 4px 20px var(--category-15-shadow);
 }
 
 /* Catégorie 16 - Corail */
+.lexique__categorie-static[data-category="16"],
 .lexique__categorie[data-category="16"] {
-    background: linear-gradient(135deg, #ff7675, #e17055);
+    background: var(--category-16-bg);
 }
 
 .lexique__categorie[data-category="16"]:hover {
     background: linear-gradient(135deg, #e17055, #ff7675);
-    box-shadow: 0 4px 20px rgba(255, 118, 117, 0.4);
+    box-shadow: 0 4px 20px var(--category-16-shadow);
 }
 
 /* Catégorie 17 - Bleu ciel */
+.lexique__categorie-static[data-category="17"],
 .lexique__categorie[data-category="17"] {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: var(--category-17-bg);
 }
 
 .lexique__categorie[data-category="17"]:hover {
     background: linear-gradient(135deg, #2980b9, #3498db);
-    box-shadow: 0 4px 20px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 4px 20px var(--category-17-shadow);
 }
 
 /* Catégorie 18 - Emeraude */
 .lexique__categorie[data-category="18"] {
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    background: var(--category-18-bg);
 }
 
 .lexique__categorie[data-category="18"]:hover {
     background: linear-gradient(135deg, #27ae60, #2ecc71);
-    box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+    box-shadow: 0 4px 20px var(--category-18-shadow);
 }
 
 /* Catégorie 19 - Saumon */
 .lexique__categorie[data-category="19"] {
-    background: linear-gradient(135deg, #fab1a0, #e17055);
+    background: var(--category-19-bg);
 }
 
 .lexique__categorie[data-category="19"]:hover {
     background: linear-gradient(135deg, #e17055, #fab1a0);
-    box-shadow: 0 4px 20px rgba(250, 177, 160, 0.4);
+    box-shadow: 0 4px 20px var(--category-19-shadow);
 }
 
 /* Catégorie 20 - Indigo */
 .lexique__categorie[data-category="20"] {
-    background: linear-gradient(135deg, #6c5ce7, #5f3dc4);
+    background: var(--category-20-bg);
 }
 
 .lexique__categorie[data-category="20"]:hover {
     background: linear-gradient(135deg, #5f3dc4, #6c5ce7);
-    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+    box-shadow: 0 4px 20px var(--category-20-shadow);
 }
 
 /* Catégorie 21 - Menthe */
 .lexique__categorie[data-category="21"] {
-    background: linear-gradient(135deg, #81ecec, #00cec9);
+    background: var(--category-21-bg);
 }
 
 .lexique__categorie[data-category="21"]:hover {
     background: linear-gradient(135deg, #00cec9, #81ecec);
-    box-shadow: 0 4px 20px rgba(129, 236, 236, 0.4);
+    box-shadow: 0 4px 20px var(--category-21-shadow);
 }
 
 /* Catégorie 22 - Magenta */
 .lexique__categorie[data-category="22"] {
-    background: linear-gradient(135deg, #e91e63, #ad1457);
+    background: var(--category-22-bg);
 }
 
 .lexique__categorie[data-category="22"]:hover {
     background: linear-gradient(135deg, #ad1457, #e91e63);
-    box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+    box-shadow: 0 4px 20px var(--category-22-shadow);
 }
 
 /* Catégorie 23 - Olive */
 .lexique__categorie[data-category="23"] {
-    background: linear-gradient(135deg, #6ab04c, #218c74);
+    background: var(--category-23-bg);
 }
 
 .lexique__categorie[data-category="23"]:hover {
     background: linear-gradient(135deg, #218c74, #6ab04c);
-    box-shadow: 0 4px 20px rgba(106, 176, 76, 0.4);
+    box-shadow: 0 4px 20px var(--category-23-shadow);
 }
 
 /* Catégorie 24 - Pêche */
 .lexique__categorie[data-category="24"] {
-    background: linear-gradient(135deg, #ff9ff3, #f368e0);
+    background: var(--category-24-bg);
 }
 
 .lexique__categorie[data-category="24"]:hover {
     background: linear-gradient(135deg, #f368e0, #ff9ff3);
-    box-shadow: 0 4px 20px rgba(255, 159, 243, 0.4);
+    box-shadow: 0 4px 20px var(--category-24-shadow);
 }
 
 /* Catégorie 25 - Cyan */
 .lexique__categorie[data-category="25"] {
-    background: linear-gradient(135deg, #54a0ff, #2e86de);
+    background: var(--category-25-bg);
 }
 
 .lexique__categorie[data-category="25"]:hover {
     background: linear-gradient(135deg, #2e86de, #54a0ff);
-    box-shadow: 0 4px 20px rgba(84, 160, 255, 0.4);
+    box-shadow: 0 4px 20px var(--category-25-shadow);
 }
 
 /* Catégorie 26 - Lavande */
 .lexique__categorie[data-category="26"] {
-    background: linear-gradient(135deg, #c44569, #f8b500);
+    background: var(--category-26-bg);
 }
 
 .lexique__categorie[data-category="26"]:hover {
     background: linear-gradient(135deg, #f8b500, #c44569);
-    box-shadow: 0 4px 20px rgba(196, 69, 105, 0.4);
+    box-shadow: 0 4px 20px var(--category-26-shadow);
 }
 
 /* Catégorie 27 - Vert forêt */
 .lexique__categorie[data-category="27"] {
-    background: linear-gradient(135deg, #00d2d3, #54a0ff);
+    background: var(--category-27-bg);
 }
 
 .lexique__categorie[data-category="27"]:hover {
     background: linear-gradient(135deg, #54a0ff, #00d2d3);
-    box-shadow: 0 4px 20px rgba(0, 210, 211, 0.4);
+    box-shadow: 0 4px 20px var(--category-27-shadow);
 }
 
 /* Catégorie 28 - Abricot */
 .lexique__categorie[data-category="28"] {
-    background: linear-gradient(135deg, #ff9068, #fd3a84);
+    background: var(--category-28-bg);
 }
 
 .lexique__categorie[data-category="28"]:hover {
     background: linear-gradient(135deg, #fd3a84, #ff9068);
-    box-shadow: 0 4px 20px rgba(255, 144, 104, 0.4);
+    box-shadow: 0 4px 20px var(--category-28-shadow);
 }
 
 /* Catégorie 29 - Bleu royal */
 .lexique__categorie[data-category="29"] {
-    background: linear-gradient(135deg, #3742fa, #2f3542);
+    background: var(--category-29-bg);
 }
 
 .lexique__categorie[data-category="29"]:hover {
     background: linear-gradient(135deg, #2f3542, #3742fa);
-    box-shadow: 0 4px 20px rgba(55, 66, 250, 0.4);
+    box-shadow: 0 4px 20px var(--category-29-shadow);
 }
 
 /* Catégorie 30 - Jade */
 .lexique__categorie[data-category="30"] {
-    background: linear-gradient(135deg, #7bed9f, #2ed573);
+    background: var(--category-30-bg);
 }
 
 .lexique__categorie[data-category="30"]:hover {
     background: linear-gradient(135deg, #2ed573, #7bed9f);
-    box-shadow: 0 4px 20px rgba(123, 237, 159, 0.4);
+    box-shadow: 0 4px 20px var(--category-30-shadow);
 }
 
 /* Catégorie 31 - Ambre */
 .lexique__categorie[data-category="31"] {
-    background: linear-gradient(135deg, #ffa502, #ff6348);
+    background: var(--category-31-bg);
 }
 
 .lexique__categorie[data-category="31"]:hover {
     background: linear-gradient(135deg, #ff6348, #ffa502);
-    box-shadow: 0 4px 20px rgba(255, 165, 2, 0.4);
+    box-shadow: 0 4px 20px var(--category-31-shadow);
 }
 
 /* Catégorie 32 - Prune */
 .lexique__categorie[data-category="32"] {
-    background: linear-gradient(135deg, #ff4757, #c44569);
+    background: var(--category-32-bg);
 }
 
 .lexique__categorie[data-category="32"]:hover {
     background: linear-gradient(135deg, #c44569, #ff4757);
-    box-shadow: 0 4px 20px rgba(255, 71, 87, 0.4);
+    box-shadow: 0 4px 20px var(--category-32-shadow);
 }
 
 /* Catégorie 33 - Aqua */
 .lexique__categorie[data-category="33"] {
-    background: linear-gradient(135deg, #7fcdcd, #2bcbba);
+    background: var(--category-33-bg);
 }
 
 .lexique__categorie[data-category="33"]:hover {
     background: linear-gradient(135deg, #2bcbba, #7fcdcd);
-    box-shadow: 0 4px 20px rgba(127, 205, 205, 0.4);
+    box-shadow: 0 4px 20px var(--category-33-shadow);
 }
 
 /* Catégorie 34 - Crimson */
 .lexique__categorie[data-category="34"] {
-    background: linear-gradient(135deg, #eb2f06, #ea2027);
+    background: var(--category-34-bg);
 }
 
 .lexique__categorie[data-category="34"]:hover {
     background: linear-gradient(135deg, #ea2027, #eb2f06);
-    box-shadow: 0 4px 20px rgba(235, 47, 6, 0.4);
+    box-shadow: 0 4px 20px var(--category-34-shadow);
 }
 
 /* Catégorie 35 - Pervenche */
 .lexique__categorie[data-category="35"] {
-    background: linear-gradient(135deg, #70a1ff, #5352ed);
+    background: var(--category-35-bg);
 }
 
 .lexique__categorie[data-category="35"]:hover {
     background: linear-gradient(135deg, #5352ed, #70a1ff);
-    box-shadow: 0 4px 20px rgba(112, 161, 255, 0.4);
+    box-shadow: 0 4px 20px var(--category-35-shadow);
 }
 
 /* Catégorie 36 - Tilleul */
 .lexique__categorie[data-category="36"] {
-    background: linear-gradient(135deg, #7bed9f, #70a1ff);
+    background: var(--category-36-bg);
 }
 
 .lexique__categorie[data-category="36"]:hover {
     background: linear-gradient(135deg, #70a1ff, #7bed9f);
-    box-shadow: 0 4px 20px rgba(123, 237, 159, 0.4);
+    box-shadow: 0 4px 20px var(--category-36-shadow);
 }
 
 /* Catégorie 37 - Cerise */
 .lexique__categorie[data-category="37"] {
-    background: linear-gradient(135deg, #ff3838, #ff9ff3);
+    background: var(--category-37-bg);
 }
 
 .lexique__categorie[data-category="37"]:hover {
     background: linear-gradient(135deg, #ff9ff3, #ff3838);
-    box-shadow: 0 4px 20px rgba(255, 56, 56, 0.4);
+    box-shadow: 0 4px 20px var(--category-37-shadow);
 }
 
 /* Catégorie 38 - Teal */
 .lexique__categorie[data-category="38"] {
-    background: linear-gradient(135deg, #0abde3, #006ba6);
+    background: var(--category-38-bg);
 }
 
 .lexique__categorie[data-category="38"]:hover {
     background: linear-gradient(135deg, #006ba6, #0abde3);
-    box-shadow: 0 4px 20px rgba(10, 189, 227, 0.4);
+    box-shadow: 0 4px 20px var(--category-38-shadow);
 }
 
 /* Catégorie 39 - Champagne */
 .lexique__categorie[data-category="39"] {
-    background: linear-gradient(135deg, #f7b731, #fa8231);
+    background: var(--category-39-bg);
 }
 
 .lexique__categorie[data-category="39"]:hover {
     background: linear-gradient(135deg, #fa8231, #f7b731);
-    box-shadow: 0 4px 20px rgba(247, 183, 49, 0.4);
+    box-shadow: 0 4px 20px var(--category-39-shadow);
 }
 
 /* Catégorie 40 - Orchidée */
 .lexique__categorie[data-category="40"] {
-    background: linear-gradient(135deg, #f368e0, #ff9ff3);
+    background: var(--category-40-bg);
 }
 
 .lexique__categorie[data-category="40"]:hover {
     background: linear-gradient(135deg, #ff9ff3, #f368e0);
-    box-shadow: 0 4px 20px rgba(243, 104, 224, 0.4);
+    box-shadow: 0 4px 20px var(--category-40-shadow);
 }
 
 /* Catégorie 41 - Marine */
 .lexique__categorie[data-category="41"] {
-    background: linear-gradient(135deg, #1e3799, #3c6382);
+    background: var(--category-41-bg);
 }
 
 .lexique__categorie[data-category="41"]:hover {
     background: linear-gradient(135deg, #3c6382, #1e3799);
-    box-shadow: 0 4px 20px rgba(30, 55, 153, 0.4);
+    box-shadow: 0 4px 20px var(--category-41-shadow);
 }
 
 /* Catégorie 42 - Menthe glaciale */
 .lexique__categorie[data-category="42"] {
-    background: linear-gradient(135deg, #7efff5, #17c0eb);
+    background: var(--category-42-bg);
 }
 
 .lexique__categorie[data-category="42"]:hover {
     background: linear-gradient(135deg, #17c0eb, #7efff5);
-    box-shadow: 0 4px 20px rgba(126, 255, 245, 0.4);
+    box-shadow: 0 4px 20px var(--category-42-shadow);
 }
 
 /* Catégorie 43 - Terre cuite */
 .lexique__categorie[data-category="43"] {
-    background: linear-gradient(135deg, #cd6133, #cc5500);
+    background: var(--category-43-bg);
 }
 
 .lexique__categorie[data-category="43"]:hover {
     background: linear-gradient(135deg, #cc5500, #cd6133);
-    box-shadow: 0 4px 20px rgba(205, 97, 51, 0.4);
+    box-shadow: 0 4px 20px var(--category-43-shadow);
 }
 
 /* Catégorie 44 - Lilas */
 .lexique__categorie[data-category="44"] {
-    background: linear-gradient(135deg, #be2edd, #9c88ff);
+    background: var(--category-44-bg);
 }
 
 .lexique__categorie[data-category="44"]:hover {
     background: linear-gradient(135deg, #9c88ff, #be2edd);
-    box-shadow: 0 4px 20px rgba(190, 46, 221, 0.4);
+    box-shadow: 0 4px 20px var(--category-44-shadow);
 }
 
 /* Catégorie 45 - Bleu glacier */
 .lexique__categorie[data-category="45"] {
-    background: linear-gradient(135deg, #7158e2, #3d5af1);
+    background: var(--category-45-bg);
 }
 
 .lexique__categorie[data-category="45"]:hover {
     background: linear-gradient(135deg, #3d5af1, #7158e2);
-    box-shadow: 0 4px 20px rgba(113, 88, 226, 0.4);
+    box-shadow: 0 4px 20px var(--category-45-shadow);
 }
 
 /* Catégorie 46 - Vert pomme */
 .lexique__categorie[data-category="46"] {
-    background: linear-gradient(135deg, #7bed9f, #2ed573);
+    background: var(--category-46-bg);
 }
 
 .lexique__categorie[data-category="46"]:hover {
     background: linear-gradient(135deg, #2ed573, #7bed9f);
-    box-shadow: 0 4px 20px rgba(123, 237, 159, 0.4);
+    box-shadow: 0 4px 20px var(--category-46-shadow);
 }
 
 /* Catégorie 47 - Vermillon */
 .lexique__categorie[data-category="47"] {
-    background: linear-gradient(135deg, #ff5722, #ff9800);
+    background: var(--category-47-bg);
 }
 
 .lexique__categorie[data-category="47"]:hover {
     background: linear-gradient(135deg, #ff9800, #ff5722);
-    box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+    box-shadow: 0 4px 20px var(--category-47-shadow);
 }
 
 /* Catégorie 48 - Bleu arctique */
 .lexique__categorie[data-category="48"] {
-    background: linear-gradient(135deg, #00d4ff, #090979);
+    background: var(--category-48-bg);
 }
 
 .lexique__categorie[data-category="48"]:hover {
-    background: linear-gradient(135deg, #090979, #00d4ff);
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+    background: linear-gradient(135deg, #090979, var(--primary-cyan));
+    box-shadow: 0 4px 20px var(--category-48-shadow);
 }
 
 /* Catégorie 49 - Rose poudré */
 .lexique__categorie[data-category="49"] {
-    background: linear-gradient(135deg, #fda085, #f093fb);
+    background: var(--category-49-bg);
 }
 
 .lexique__categorie[data-category="49"]:hover {
     background: linear-gradient(135deg, #f093fb, #fda085);
-    box-shadow: 0 4px 20px rgba(253, 160, 133, 0.4);
+    box-shadow: 0 4px 20px var(--category-49-shadow);
 }
 
 /* Catégorie 50 - Violet cosmique */
 .lexique__categorie[data-category="50"] {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--category-50-bg);
 }
 
 .lexique__categorie[data-category="50"]:hover {
     background: linear-gradient(135deg, #764ba2, #667eea);
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 20px var(--category-50-shadow);
 }
 
 /* Catégorie 51 - Vert émeraude */
 .lexique__categorie[data-category="51"] {
-    background: linear-gradient(135deg, #11998e, #38ef7d);
+    background: var(--category-51-bg);
 }
 
 .lexique__categorie[data-category="51"]:hover {
     background: linear-gradient(135deg, #38ef7d, #11998e);
-    box-shadow: 0 4px 20px rgba(17, 153, 142, 0.4);
+    box-shadow: 0 4px 20px var(--category-51-shadow);
 }
 
 /* Catégorie 52 - Orange sunset */
 .lexique__categorie[data-category="52"] {
-    background: linear-gradient(135deg, #ff8a80, #ff5722);
+    background: var(--category-52-bg);
 }
 
 .lexique__categorie[data-category="52"]:hover {
     background: linear-gradient(135deg, #ff5722, #ff8a80);
-    box-shadow: 0 4px 20px rgba(255, 138, 128, 0.4);
+    box-shadow: 0 4px 20px var(--category-52-shadow);
 }
 
 /* Catégorie 53 - Bleu neon */
 .lexique__categorie[data-category="53"] {
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    background: var(--category-53-bg);
 }
 
 .lexique__categorie[data-category="53"]:hover {
     background: linear-gradient(135deg, #00f2fe, #4facfe);
-    box-shadow: 0 4px 20px rgba(79, 172, 254, 0.4);
+    box-shadow: 0 4px 20px var(--category-53-shadow);
 }
 
 /* Catégorie 54 - Rose fluo */
 .lexique__categorie[data-category="54"] {
-    background: linear-gradient(135deg, #ff0084, #ff006e);
+    background: var(--category-54-bg);
 }
 
 .lexique__categorie[data-category="54"]:hover {
     background: linear-gradient(135deg, #ff006e, #ff0084);
-    box-shadow: 0 4px 20px rgba(255, 0, 132, 0.4);
+    box-shadow: 0 4px 20px var(--category-54-shadow);
 }
 
 /* Catégorie 55 - Vert tropical */
 .lexique__categorie[data-category="55"] {
-    background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+    background: var(--category-55-bg);
 }
 
 .lexique__categorie[data-category="55"]:hover {
     background: linear-gradient(135deg, #a8e6cf, #56ab2f);
-    box-shadow: 0 4px 20px rgba(86, 171, 47, 0.4);
+    box-shadow: 0 4px 20px var(--category-55-shadow);
 }
 
 /* Layout responsive */
@@ -662,7 +698,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 24px;
-        padding: 60px 40px;
+        padding: 40px 40px;
     }
 
     .lexique-container {
@@ -673,7 +709,7 @@
 
 @media (min-width: 1200px) {
     .lexiques-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 32px;
     }
 }
@@ -701,7 +737,7 @@
 /* Effet de focus pour l'accessibilité */
 .lexique__title:focus,
 .lexique__categorie:focus {
-    outline: 3px solid #74b9ff;
+    outline: 3px solid var(--primary-blue);
     outline-offset: 2px;
 }
 

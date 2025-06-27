@@ -1,11 +1,11 @@
 /* Footer Styles - Charte Graphique CYBER4ALL */
 footer {
-    background: linear-gradient(135deg, #c8d6e5 0%, #ddd6fe 100%);
-    color: #4a5568;
+    background: var(--gradient-footer);
+    color: var(--text-footer);
     padding: 60px 0 20px 0;
-    margin-top: 5rem;
-    font-family: 'Arial', sans-serif;
     position: relative;
+    margin-top: 7.8rem;
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
     width: 100%;
 }
@@ -18,7 +18,7 @@ footer::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #FFF;
+    background-color: var(--primary-white);
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;
     opacity: 0.8;
@@ -50,7 +50,7 @@ footer::before {
 }
 
 .item h4 {
-    color: #2d3748;
+    color: var(--text-medium);
     font-size: 1.1em;
     font-weight: 600;
     margin-bottom: 8px;
@@ -59,7 +59,7 @@ footer::before {
 }
 
 .item p {
-    color: #4a5568;
+    color: var(--text-footer);
     font-size: 0.95em;
     margin: 0;
     font-weight: 400;
@@ -77,15 +77,15 @@ footer::before {
 }
 
 .footer-lien a {
-    color: #4a5568;
+    color: var(--text-footer);
     text-decoration: none;
     font-size: 0.95em;
     font-weight: 400;
-    transition: color 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .footer-lien a:hover {
-    color: #2b6cb0;
+    color: var(--text-hover);
     text-decoration: underline;
 }
 
@@ -94,7 +94,7 @@ footer::before {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 40px 0 40px;
-    border-top: 1px solid rgba(74, 85, 104, 0.2);
+    border-top: 1px solid var(--border-gray);
     position: relative;
     z-index: 2;
 }
@@ -109,21 +109,21 @@ footer::before {
 }
 
 .reglementation-lien {
-    color: #4a5568;
+    color: var(--text-footer);
     font-size: 0.9em;
     font-weight: 400;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .reglementation-lien:hover {
-    color: #2b6cb0;
+    color: var(--text-hover);
     text-decoration: underline;
 }
 
 /* Copyright */
 .footer-copyright {
-    color: #4a5568;
+    color: var(--text-footer);
     font-size: 0.9em;
     font-weight: 400;
     margin: 0;

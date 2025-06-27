@@ -75,12 +75,29 @@ endif
         </nav>
 
         <div class="header__connexion">
-            <a href="#"
+            <?php if(!isset($_SESSION['utilisateur'])):?>
+            <a href="identification.php"
                class="btn-connexion"
                title="Se connecter ou s'inscrire">
                 Connexion
             </a>
-        </div>
+            <?php endif; ?>
+            <?php if(isset($_SESSION['utilisateur'])):?>
+                <a href="monCompte.php"
+                   class="btn-connexion"
+                   title="Accéder à mon compte">
+                    Mon compte
+                </a>
+            <?php endif; ?>
+            <?php if(isset($_SESSION['utilisateur'])):?>
+                <form action="index.php" method="POST" class="btn-connexion">
+                    <button type="submit"
+                            value="deconnexion"
+                            name="deconnexion"
+                            class="btn-deconnexion">Se déconnecter</button>
+                </form>
+        <?php endif; ?>
+            </div>
     </div>
 </header>
 <?php endif ?>

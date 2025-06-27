@@ -18,26 +18,53 @@ if ($id_session):
     $pdo = new Connexion("user");
     $connexion = $pdo->setConnexion();
     $categorieId = null;
+
+    if(!empty($_POST['recherche'])):
+        $recherche = $_POST['recherche'];
+    endif;
+
     if (is_a($connexion, "PDO")):
         $crudMot = new MotCle_CRUD($connexion);
+        $crudCategorie = new Categorie_CRUD($connexion);
+
         if(isset($_POST['recherche'])){
             $recherche = htmlspecialchars(trim($_POST['recherche']));
             $mots = $crudMot->recupTousLesMotsAvecFiltre($recherche);
-        }else if(isset($_GET['categorie']) && !empty($_GET['categorie'])) {
+        }
+        else if(isset($_GET['categorie']) && !empty($_GET['categorie'])) {
             $categorieId = (int) $_GET['categorie'];
             $MotCategorieCRUD= new MotCategorie_CRUD($connexion);
             $mots = $MotCategorieCRUD->recupTousLesMotsDuneCategorieParID($categorieId);
-        }else{
+            $categorie = $crudCategorie->recupCategorieParID($categorieId);
+        }
+        else{
             $mots = $crudMot->recupTousLesMots();
         }
+
         $crudMotCategorie = new MotCategorie_CRUD($connexion);
         foreach ($mots as $mot):
             $listeCategories[$mot->getId()] = $crudMotCategorie->recupToutesLesCategoriesDunMot($mot);
         endforeach;
+
     endif ?>
 
 <div class="lexiques-wrapper">
     <?php if (!empty($mots)):
+        if(!isset($_GET['categorie'])):?>
+            <div class="lexiques__title-static">
+                <h3 class="lexique__categorie-static"
+                    data-category="8">Lexique de la cybersécurité
+                    <?= !empty($recherche) ? " - ".$recherche : "" ;?>
+                </h3>
+            </div>
+            <?php endif;
+                if(isset($_GET['categorie']) && !empty($_GET['categorie'])):
+                ?>
+            <div class="lexiques__title-static">
+                <h3 class="lexique__categorie-static"
+                    data-category="<?= $categorie->getId() ?>">Lexique de la catégorie : <?= $categorie->getNom()?></h3>
+            </div>
+           <?php endif;
     foreach ($mots as $mot):?>
         <div class="lexique-container">
             <h3 class="lexique__title"
@@ -47,14 +74,11 @@ if ($id_session):
             <div class="lexique_categories">
                 <?php
                 $categoriesDuMot = $listeCategories[$mot->getId()] ?? [];
-                foreach ($categoriesDuMot as $categorie):
-                    // Debug : voir ce que retourne getId()
-                    echo "<!-- Debug: " . var_export($categorie->getId(), true) . " -->";
-                    echo "<!-- Nom: " . $categorie->getNom() . " -->";
-                    ?>
-
-                 <a href="lexiques.php?categorie=<?= $categorie->getId()?>" class="lexique__categorie"
-                   title="Catégorie du mot" data-category="<?= $categorie->getId() ?>">
+                foreach ($categoriesDuMot as $categorie):?>
+                 <a href="lexiques.php?categorie=<?= $categorie->getId() ?>"
+                    class="lexique__categorie"
+                    title="Catégorie du mot"
+                    data-category="<?= $categorie->getId() ?>">
                     <?= $categorie->getNom() ?>
                 </a>
                 <?php endforeach; ?>
