@@ -90,12 +90,8 @@ endif
                 </a>
             <?php endif; ?>
             <?php if(isset($_SESSION['utilisateur'])):?>
-                <form action="index.php" method="POST" class="btn-connexion">
-                    <button type="submit"
-                            value="deconnexion"
-                            name="deconnexion"
-                            class="btn-deconnexion">Se déconnecter</button>
-                </form>
+                    <a href="index.php?deconnexion"
+                            class="btn-connexion">Se déconnecter</a>
         <?php endif; ?>
             </div>
     </div>

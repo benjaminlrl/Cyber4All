@@ -1,0 +1,142 @@
+.fr-notice {
+    position: relative;
+    background: var(--rgba-white-07);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass-medium);
+    border-left: 4px solid var(--color-primary-blue);
+    padding: 1rem 1.5rem;
+    margin: 5px 0 0 0;
+    border-radius: 8px;
+    width: 65%;
+}
+
+.fr-notice--info {
+    border-left-color: var(--blue-primary);
+    background: linear-gradient(135deg, rgba(116, 185, 255, 0.25), rgba(9, 132, 227, 0.25));
+}
+
+.fr-notice--success {
+    border-left-color: var(--green-emerald);
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(0, 184, 148, 0.25));
+}
+
+.fr-notice--warning {
+    border-left-color: var(--orange-amber);
+    background: linear-gradient(135deg, rgba(255, 165, 2, 0.25), rgba(253, 203, 110, 0.25));
+}
+
+.fr-notice--error {
+    border-left-color: var(--red-coral);
+    background: linear-gradient(135deg, rgba(255, 118, 117, 0.25), rgba(225, 112, 85, 0.25));
+}
+
+.fr-notice__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.fr-notice__icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.125rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.fr-notice__icon--info {
+    color: var(--blue-primary);
+}
+
+.fr-notice__icon--success {
+    color: var(--green-emerald);
+}
+
+.fr-notice__icon--warning {
+    color: var(--orange-amber);
+}
+
+.fr-notice__icon--error {
+    color: var(--red-coral);
+}
+
+.fr-notice__content {
+    flex: 1;
+}
+
+.fr-notice__title {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-title);
+    letter-spacing: -0.01em;
+}
+
+.fr-notice__detail {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.fr-notice__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.fr-notice__close:hover {
+    color: var(--text-title);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Démonstration avec header Cyber4All */
+.demo-header {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Animation d'apparition */
+.fr-notice {
+    animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Effet de fermeture */
+.fr-notice.closing {
+    animation: slideOutUp 0.3s ease-in forwards;
+}
+
+@keyframes slideOutUp {
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+        height: 0;
+        padding: 0;
+        margin: 0;
+    }
+}

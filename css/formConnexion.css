@@ -1,0 +1,250 @@
+.form-connexion {
+    background: var(--transparent);
+    border: solid var(--white) 1px;
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow:
+            0 25px 50px var(--shadow-light),
+            0 0 0 1px var(--border-glass-subtle);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+}
+
+.form-modifier-moncompte{
+    background: var(--transparent);
+    /* border: solid var(--white) 1px; */
+    /* backdrop-filter: blur(20px); */
+    /* padding: 40px; */
+    /* border-radius: 20px; */
+    /* box-shadow: 0 25px 50px var(--shadow-light), 0 0 0 1px var(--border-glass-subtle); */
+    width: 100%;
+    /* max-width: 420px; */
+    position: relative;
+    z-index: 1;
+}
+.form-modifier-moncompte h1,
+.form-connexion h1 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #4c4f69;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.form-modifier-moncompte .input-container,
+.form-connexion .input-container {
+    position: relative;
+}
+
+.input-wrapper{
+    margin-top: 1.5rem;
+}
+
+.form-modifier-moncompte .input-box-connexion,
+.form-connexion .input-box-connexion {
+    width: 100%;
+    padding: 16px 20px 16px 50px;
+    border: 2px solid var(--border-input);
+    border-radius: 12px;
+    font-size: 16px;
+    background: var(--bg-form);
+    transition: all 0.3s ease;
+    color: var(--gray-700);
+}
+
+.form-modifier-moncompte .input-box-connexion:focus,
+.form-connexion .input-box-connexion:focus {
+    outline: none;
+    border-color: var(--border-input-focus);
+    background: var(--bg-form-focus);
+    box-shadow: 0 0 0 4px var(--shadow-form-focus);
+}
+.form-modifier-moncompte input-box-connexion::placeholder,
+.form-connexion .input-box-connexion::placeholder {
+    color: var(--text-placeholder);
+}
+.form-modifier-moncompte .input-icon,
+.form-connexion .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-500);
+    font-size: 16px;
+    z-index: 2;
+}
+
+.form-modifier-moncompte .password-container,
+.form-connexion .password-container {
+    position: relative;
+}
+
+.form-modifier-moncompte .password-toggle,
+.form-connexion .password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-500);
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+.form-modifier-moncompte .password-toggle:hover,
+.form-connexion .password-toggle:hover {
+    color: var(--purple-primary);
+    background: var(--bg-hover-primary);
+}
+.form-modifier-moncompte .password-toggle:active,
+.form-connexion .password-toggle:active {
+    transform: translateY(-50%) scale(0.95);
+}
+.form-modifier-moncompte a,
+.form-connexion a {
+    color: var(--text-link);
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    text-align: right;
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+}
+.form-modifier-moncompte a:hover,
+.form-connexion a:hover {
+    color: var(--text-link-hover);
+    text-decoration: underline;
+}
+.form-modifier-moncompte .btn-submit-connexion,
+.form-connexion .btn-submit-connexion {
+    width: 100%;
+    padding: 16px;
+    background: var(--btn-primary-bg);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+}
+.form-modifier-moncompte .btn-submit-connexion:hover,
+.form-connexion .btn-submit-connexion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px var(--shadow-purple);
+}
+.form-modifier-moncompte .btn-submit-connexion:active,
+.form-connexion .btn-submit-connexion:active {
+    transform: translateY(0);
+}
+.form-modifier-moncompte .register-link-connexion,
+.form-connexion .register-link-connexion {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 14px;
+    margin: 0;
+}
+.form-modifier-moncompte .register-link-connexion a,
+.form-connexion .register-link-connexion a {
+    display: inline;
+    margin: 0;
+    text-align: inherit;
+}
+.form-modifier-moncompte .important,
+.form-connexion .important {
+    font-weight: 600;
+    color: var(--purple-primary);
+}
+.form-modifier-moncompte .important:hover,
+.form-connexion .important:hover {
+    color: var(--purple-primary-dark);
+}
+.form-modifier-moncompte .password-toggle.visible,
+/* Animation pour le toggle du mot de passe */
+.form-connexion .password-toggle.visible {
+    color: var(--purple-primary);
+}
+.champIndication{
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--color-gray-light);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .form-modifier-moncompte,
+    .form-connexion {
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    .form-modifier-moncompte h1,
+    .form-connexion h1 {
+        font-size: 24px;
+    }
+    .form-modifier-moncompte .input-box-connexion,
+    .form-connexion .input-box-connexion {
+        padding: 14px 18px 14px 45px;
+        font-size: 15px;
+    }
+
+    .form-modifier-moncompte .input-icon,
+    .form-connexion .input-icon {
+        left: 15px;
+        font-size: 14px;
+    }
+}
+
+/* Animation d'entrée */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.form-modifier-moncompte,
+.form-connexion {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.checkbox-container{
+    font-size: .85rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin: 0;
+    vertical-align: baseline;
+}
+
+.checkbox-label {
+    line-height: 1;
+}
