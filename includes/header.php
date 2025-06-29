@@ -35,8 +35,14 @@ endif
                 <h1 class="header__titre">CYBER<span class="header__titre--accent">4ALL</span></h1>
             </a>
         </div>
+        <!-- Bouton hamburger pour mobile -->
+        <button class="menu-hamburger" id="menu-hamburger" aria-label="Menu de navigation">
+            <span class="menu-hamburger__ligne"></span>
+            <span class="menu-hamburger__ligne"></span>
+            <span class="menu-hamburger__ligne"></span>
+        </button>
 
-        <nav class="header__navigation" role="navigation" aria-label="Navigation principale">
+        <nav class="header__navigation" id="header-navigation" role="navigation" aria-label="Navigation principale">
             <ul class="menu-nav">
                 <li class="menu-nav__item menu-nav__item--dropdown">
                     <a href="#"
@@ -48,7 +54,7 @@ endif
                     </a>
                     <div class="dropdown-menu" role="menu">
                         <?php foreach ($categories as $categorie):?>
-                        <a href="lexiques.php?categorie=<?= htmlspecialchars($categorie->getId())?>"
+                        <a href="lexiques.php?categorie=<?= $categorie->getId()?>"
                            class="dropdown-menu__item"
                            title="Tout le lexique de la Catégorie <?= $categorie->getNom() ?>"
                            role="menuitem">
@@ -58,10 +64,10 @@ endif
                     </div>
                 </li>
                 <li class="menu-nav__item">
-                    <a href="#"
+                    <a href="communautaire.php"
                        title="Lexique les plus importants aux yeux de la communauté"
                        class="menu-nav__lien">
-                        Les plus populaires
+                        Communautaire
                     </a>
                 </li>
                 <li class="menu-nav__item">
@@ -96,4 +102,23 @@ endif
             </div>
     </div>
 </header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('menu-hamburger');
+        const navigation = document.getElementById('header-navigation');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navigation.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        const menuLinks = document.querySelectorAll('.menu-nav__lien');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navigation.classList.remove('active');
+            });
+        });
+    });</script>
 <?php endif ?>

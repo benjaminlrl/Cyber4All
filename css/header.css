@@ -12,13 +12,14 @@
     right: 0;
     z-index: 1000;
 }
+
 .header__wrapper {
     max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    padding: 5px 5px;
+    padding: 5px 15px;
 }
 
 /* Section marque/logo */
@@ -48,6 +49,39 @@
 
 .header__titre--accent {
     color: var(--color-primary-blue);
+}
+
+/* Menu hamburger (caché par défaut) */
+.menu-hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    z-index: 1002;
+}
+
+.menu-hamburger__ligne {
+    width: 25px;
+    height: 3px;
+    background: var(--text-secondary);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Animation du hamburger en X */
+.menu-hamburger.active .menu-hamburger__ligne:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-hamburger.active .menu-hamburger__ligne:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburger.active .menu-hamburger__ligne:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Navigation principale */
@@ -168,6 +202,7 @@
     box-shadow: 0 4px 15px var(--shadow-button);
     border: none;
     cursor: pointer;
+    animation: none;
 }
 
 .btn-connexion:hover {
@@ -182,35 +217,83 @@
     color: var(--white);
     font-weight: 600;
     font-size: 14px;
+    cursor: pointer;
 }
 
-/* Responsive */
+/* Responsive Mobile */
 @media (max-width: 768px) {
-    .header-site {
-        flex-direction: column;
+    .header__wrapper {
         padding: 10px 15px;
         position: relative;
     }
 
-    .header__marque {
-        margin-bottom: 15px;
+    /* Afficher le menu hamburger */
+    .menu-hamburger {
+        display: flex;
+    }
+
+    /* Réduire la taille du titre sur mobile */
+    .header__titre {
+        font-size: 20px;
+    }
+
+    .header__logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Cacher la navigation par défaut */
+    .header__navigation {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-glass-light);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--border-glass-medium);
+        box-shadow: 0 4px 20px var(--shadow-medium);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    /* Afficher la navigation quand active */
+    .header__navigation.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     .menu-nav {
         flex-direction: column;
         gap: 0;
         width: 100%;
+        padding: 20px 0;
     }
 
     .menu-nav__item {
         width: 100%;
+        border-bottom: 1px solid var(--border-divider-light);
+    }
+
+    .menu-nav__item:last-child {
+        border-bottom: none;
     }
 
     .menu-nav__lien {
-        padding: 12px 15px;
-        border-bottom: 1px solid var(--border-divider-medium);
+        padding: 15px 20px;
+        font-size: 16px;
+        border-radius: 0;
     }
 
+    .menu-nav__lien:hover {
+        transform: none;
+        background: var(--bg-hover-primary);
+    }
+
+    /* Dropdown mobile */
     .dropdown-menu {
         position: static;
         opacity: 1;
@@ -220,6 +303,7 @@
         background: var(--bg-hover-primary);
         margin: 0;
         border-radius: 0;
+        border: none;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
@@ -229,22 +313,48 @@
         max-height: 400px;
     }
 
+    .dropdown-menu__item {
+        padding: 12px 40px;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border-divider-light);
+    }
+
+    .dropdown-menu__item:hover {
+        padding-left: 50px;
+    }
+
+    /* Boutons de connexion mobile */
     .header__connexion {
-        margin-top: 15px;
-        width: 100%;
-        justify-content: center;
+        gap: 10px;
     }
 
     .btn-connexion {
-        width: 100%;
-        text-align: center;
+        padding: 10px 15px;
+        font-size: 13px;
+        border-radius: 20px;
     }
 
+    .btn-deconnexion {
+        font-size: 13px;
+    }
 }
 
-.btn-connexion{
-     animation: none;
-}
-.btn-deconnexion{
-    cursor: pointer;
+/* Responsive Tablette */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header__wrapper {
+        padding: 5px 20px;
+    }
+
+    .menu-nav {
+        gap: 20px;
+    }
+
+    .menu-nav__lien {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+
+    .header__titre {
+        font-size: 22px;
+    }
 }

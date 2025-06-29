@@ -1,13 +1,15 @@
 /* Section de recherche */
 #recherche {
-    width: 100%;
+    width: 65%;
     padding: 40px 20px;
     margin: 2rem 0 0 0;
 }
-
+.container-recherche{
+    width: 70%;
+}
 /* Formulaire de recherche */
 .form-recherche {
-    width: 900px;
+    width: 100%;
     position: relative;
     justify-self: center;
     display: flex;

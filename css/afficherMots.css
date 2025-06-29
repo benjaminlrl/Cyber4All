@@ -51,6 +51,140 @@
     height: 4px;
 }
 
+.lexique__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-right: 1rem;
+    gap: 0.25rem;
+}
+/* ========================================
+   BOUTONS DE VOTE COMMUNAUTAIRE
+   Sans effet glassmorphism
+   ======================================== */
+
+.btn-vote-communautaire {
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-vote-communautaire input[type="submit"] {
+    /* Base commune */
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 140px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bouton VOTER (Vert) */
+.btn-vote-communautaire input[type="submit"][value="Voter"] {
+    background: linear-gradient(135deg, var(--green-emerald), var(--green-emerald-dark));
+    color: var(--white);
+    border: 2px solid var(--green-emerald);
+}
+
+.btn-vote-communautaire input[type="submit"][value="Voter"]:hover {
+    background: linear-gradient(135deg, var(--green-emerald-dark), var(--green-tropical));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+    border-color: var(--green-emerald-dark);
+}
+
+.btn-vote-communautaire input[type="submit"][value="Voter"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+}
+
+/* Bouton SUPPRIMER VOTE (Rouge) */
+.btn-vote-communautaire input[type="submit"][value="Supprimer vote"] {
+    background: linear-gradient(135deg, var(--red-coral), var(--red-coral-dark));
+    color: var(--white);
+    border: 2px solid var(--red-coral);
+}
+
+.btn-vote-communautaire input[type="submit"][value="Supprimer vote"]:hover {
+    background: linear-gradient(135deg, var(--red-coral-dark), var(--red-crimson));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 118, 117, 0.3);
+    border-color: var(--red-coral-dark);
+}
+
+.btn-vote-communautaire input[type="submit"][value="Supprimer vote"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 118, 117, 0.2);
+}
+
+/* Effet de focus pour l'accessibilité */
+.btn-vote-communautaire input[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de chargement/disabled */
+.btn-vote-communautaire input[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-vote-communautaire input[type="submit"]:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Variante avec bordure plus prononcée */
+.btn-vote-communautaire.bordered input[type="submit"] {
+    border-width: 3px;
+}
+
+/* Variante compacte */
+.btn-vote-communautaire.compact input[type="submit"] {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+}
+/* Variante large */
+.btn-vote-communautaire.large input[type="submit"] {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-width: 180px;
+}
+
+/* Animation de pulsation pour attirer l'attention */
+@keyframes pulse-vote {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn-vote-communautaire.pulse input[type="submit"] {
+    animation: pulse-vote 2s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn-vote-communautaire input[type="submit"] {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        min-width: 120px;
+    }
+
+    .btn-vote-communautaire.large input[type="submit"] {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 150px;
+    }
+}
+
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -66,7 +200,12 @@
 .lexiques__title .lexique__categorie-static{
     font-size: 1.5rem;
 }
-
+.lexiques__title-static .lexique__categorie-static.statistique{
+    font-size: 1rem;
+}
+.word-list.statistique{
+    margin-top: .5rem;
+}
 .lexiques__title-static,
 .lexique__title {
     color: var(--gray-title);
@@ -127,6 +266,7 @@
     font-size: 1.8rem;
 }
 
+
 .lexique__categorie-static::before,
 .lexique__categorie::before {
     content: '';
@@ -138,7 +278,11 @@
     background: var(--gradient-shine);
     transition: left 0.5s ease;
 }
-
+.vote,
+.suppvote{
+    transition: background-color .3s ease-in-out;
+    color: var(--white);
+}
 .lexique__categorie:hover::before {
     left: 100%;
 }
@@ -453,10 +597,12 @@
 }
 
 /* Catégorie 30 - Jade */
+.vote,
 .lexique__categorie[data-category="30"] {
     background: linear-gradient(135deg, var(--category-30-start), var(--category-30-end));
 }
 
+.vote:hover,
 .lexique__categorie[data-category="30"]:hover {
     background: linear-gradient(135deg, var(--category-30-end), var(--category-30-start));
     box-shadow: 0 4px 20px rgba(123, 237, 159, 0.4);
@@ -472,11 +618,14 @@
     box-shadow: 0 4px 20px rgba(255, 165, 2, 0.4);
 }
 
+
 /* Catégorie 32 - Prune */
+.suppvote,
 .lexique__categorie[data-category="32"] {
     background: linear-gradient(135deg, var(--category-32-start), var(--category-32-end));
 }
 
+.suppvote:hover,
 .lexique__categorie[data-category="32"]:hover {
     background: linear-gradient(135deg, var(--category-32-end), var(--category-32-start));
     box-shadow: 0 4px 20px rgba(255, 71, 87, 0.4);
