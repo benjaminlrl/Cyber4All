@@ -4,6 +4,7 @@ include_once('../lib/MotCle_CRUD.php');
 include_once('../lib/MotCategorie_CRUD.php');
 include_once('../lib/Categorie_CRUD.php');
 include_once('../lib/MotCle.php');
+include_once('../lib/MotVotes_CRUD.php');
 include_once('../lib/Vote.php');
 include_once('../lib/Vote_CRUD.php');
 include_once('../lib/Utilisateur.php');
@@ -16,6 +17,7 @@ use lib\MotCle_CRUD;
 use lib\MotCle;
 use lib\MotCategorie_CRUD;
 use lib\Vote_CRUD;
+use lib\MotVotes_CRUD;
 use lib\Vote;
 use lib\Utilisateur;
 use lib\Utilisateur_CRUD;
@@ -30,7 +32,10 @@ if ($id_session):
     //récupérer le nombre de vote de la semaine en cours par l'utilisateur
     $voteCRUD = new Vote_CRUD($connexion);
     $nbVotesSemaine = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
-        $nbVotesRestants = 5 - $nbVotesSemaine;
+    $nbVotesRestants = 5 - $nbVotesSemaine;
+    $motVotesCRUD = new MotVotes_CRUD($connexion);
+    $motsPopulaires = $motVotesCRUD->recupTousLesMotsPopulairesDateDESC();
+    $_SESSION['motsPopulaires'] = $motsPopulaires;
 endif;
 ?>
     <div class="vote-section">
@@ -42,21 +47,7 @@ endif;
             <strong><?= $nbVotesRestants?> votes restants</strong> cette semaine (renouvellement tous les lundis)
         </div>
 
-        <div class="search-box">
-                <form action="communautaire.php"
-                      method="POST"
-                      class="form-recherche">
-                    <input type="search"
-                           class="recherche-input"
-                           name="recherche"
-                           maxlength="100"
-                           value=""
-                           placeholder="Explorez les termes clés de la cybersécurité !">
-                    <button
-                        type="submit"
-                        class="recherche-bouton-soumission">Rechercher</button>
-                </form>
-        </div>
+
         <div class="word-list" id="wordList">
         <?php include_once('afficherMotLexique.php'); ?>
         </div>

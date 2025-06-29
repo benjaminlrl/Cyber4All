@@ -33,8 +33,12 @@ include_once('../enTete.html');
 <?php
 require_once("../includes/header.php");?>
 <?= isset($notification)? $notification : ""; ?>
+<section id="recherche">
+    <div class="container-recherche">
+<?php require_once("../includes/recherche.php"); ?>
+    </div>
+</section>
 <?php
-require_once("../includes/recherche.php");
 require_once("../includes/carroussel_definitions.php");
 require_once("../includes/footer.php");
 ?>

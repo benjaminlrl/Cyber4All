@@ -60,34 +60,34 @@ if ($id_session):
                 <h3 class="lexique__title"
                 title="Nom du mot"><?= $mot->getMot() ?></h3>
             </div>
-    <?php if(isset($utilisateur) && $utilisateur->getRole() === "contributeur"): ?>
-        <form action="communautaire.php" method="POST" class="btn-vote-communautaire">
-            <!-- Champ caché pour passer l'ID du mot -->
-            <input type="hidden" name="id_mot" value="<?= $mot->getId() ?>">
+            <?php if(isset($utilisateur) && $utilisateur->getRole() === "contributeur"): ?>
+            <form action="communautaire.php" method="POST" class="btn-vote-communautaire">
+                <!-- Champ caché pour passer l'ID du mot -->
+                <input type="hidden" name="id_mot" value="<?= $mot->getId() ?>">
 
-            <?php
-            // Générer un token unique pour ce formulaire
-            $token = uniqid('vote_', true);
-            $_SESSION['vote_tokens'][] = $token;?>
-            <input type="hidden" name="vote_token" value="<?= $token ?>">
+                <?php
+                // Générer un token unique pour ce formulaire
+                $token = uniqid('vote_', true);
+                $_SESSION['vote_tokens'][] = $token;?>
+                <input type="hidden" name="vote_token" value="<?= $token ?>">
 
-            <?php
-            $voteCRUD = new Vote_CRUD($connexion);
-            // Récupère tous les id des mots votés depuis lundi
-            $id_mots = $voteCRUD->recupMotsVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
-            $nbVoteEnCours = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
+                <?php
+                $voteCRUD = new Vote_CRUD($connexion);
+                // Récupère tous les id des mots votés depuis lundi
+                $id_mots = $voteCRUD->recupMotsVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
+                $nbVoteEnCours = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
 
-            //L'utilisateur a déjà voté pour ce mot
-            if (in_array($mot->getId(), $id_mots)): ?>
-                <input type="submit" name="suppVote" value="Supprimer mon vote"
-                       class="suppvote" title="Supprimer mon vote">
-                <input type="hidden" value="<?= $voteCRUD->recupUnVoteSemaineEnCours(
-                    $utilisateur->getId(), $mot->getId())->getIdVote() ?>"
-                       name="suppVote" class="suppvote" title="Supprimer mon vote">
-            <?php endif; ?>
-        </form>
+                //L'utilisateur a déjà voté pour ce mot
+                if (in_array($mot->getId(), $id_mots)): ?>
+                    <input type="submit" name="suppVote" value="Supprimer mon vote"
+                           class="suppvote" title="Supprimer mon vote">
+                    <input type="hidden" value="<?= $voteCRUD->recupUnVoteSemaineEnCours(
+                        $utilisateur->getId(), $mot->getId())->getIdVote() ?>"
+                           name="suppVote" class="suppvote" title="Supprimer mon vote">
+                <?php endif; ?>
+            </form>
     <?php endif; ?>
-    </div>
+        </div>
 <?php
     endforeach;
 endif; ?>

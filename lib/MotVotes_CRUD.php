@@ -60,4 +60,31 @@ class MotVotes_CRUD
         }
         return $mots;
     }
+    public function recupTousLesMotsPopulairesDateDESC():array{
+        $req_select=$this->db->prepare("SELECT M.*, COUNT(V.id_vote) AS nbVotes 
+                        FROM motcle M 
+                        INNER JOIN votes V ON V.id_motcle = M.id 
+                        WHERE V.date_vote >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
+                        GROUP BY M.id
+                        ORDER BY nbVotes DESC, MAX(V.date_vote) DESC;");
+        try {
+            $req_select->execute();
+            $results=$req_select->fetchAll(PDO::FETCH_OBJ);
+            $mots=[];
+            if($results){
+                foreach($results as $result){
+                    $mot = new motCle(
+                        $result->mot,
+                        $result->definition,
+                        $result->id
+                    );
+                    $mots[] = $mot;
+                }
+            }
+        }
+        catch(PDOException $e) {
+            error_log("Erreur recupTousLesMots : " . $e->getMessage());
+        }
+        return $mots;
+    }
 }

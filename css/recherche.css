@@ -1,11 +1,12 @@
 /* Section de recherche */
 #recherche {
-    width: 65%;
+    width: 100%;
     padding: 40px 20px;
     margin: 2rem 0 0 0;
 }
 .container-recherche{
     width: 70%;
+    justify-self: center;
 }
 /* Formulaire de recherche */
 .form-recherche {

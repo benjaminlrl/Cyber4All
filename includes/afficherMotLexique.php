@@ -64,7 +64,8 @@ if ($id_session):
         <div class="lexique-container-static">
             <div class="lexiques__title-static">
                 <h3 class="lexique__categorie-static"
-                    data-category="8">Lexique de la cybersécurité
+                    data-category="8">
+                    <?= isset($motsPopulaires) ? "Les favoris de la communauté": "Lexique de la cybersécurité";?>
                     <?= !empty($recherche) ? " - ".$recherche : "" ;?>
                 </h3>
             </div>
@@ -80,6 +81,10 @@ if ($id_session):
             </div>
         </div>
            <?php endif;
+            if(isset($motsPopulaires)):
+                $mots = array_slice($motsPopulaires, 0, 10);
+                //vérifie si on est sur la page comunautaire - limite aux 10 premiers
+            endif;
     foreach ($mots as $mot):
                 ?>
         <div class="lexique-container">
@@ -142,11 +147,19 @@ if ($id_session):
         </div>
     <?php endforeach; ?>
 <?php  endif;
-if (empty($mots)): ?>
+if (empty($mots)):?>
     <div class="lexique-container">
+    <?php if(isset($motsPopulaires) && !isset($_POST['recherche'])):?>
         <h3 class="lexique__title"
-            title="Aucun résultat">Aucun terme ne correspond à votre recherche.</h3>
+            title="Aucun résultat">Sois le premier de la communauté à voter pour un terme cette semaine !</h3>
+        <br>
+        <a href="lexiques.php" class="btn-connexion">Aller voter
+            <i class="fa-solid fa-shield"></i></a>
+    <?php else: ?>
+        <h3 class="lexique__title"
+            title="Aucun résultat">Aucun terme ne correspond a votre recherche...</h3>
+    <?php endif; ?>
+        </div>
+    <?php endif; ?>
     </div>
-<?php endif; ?>
-</div>
 <?php endif; ?>
