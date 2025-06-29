@@ -20,10 +20,10 @@ use lib\Utilisateur;
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+include_once('../enTete.html');
 ?>
 <body id="top">
 <?php
-include_once('../enTete.html');
 require_once("../includes/header.php");?>
 <div class="container">
     <div class="container-recherche">

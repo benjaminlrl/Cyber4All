@@ -8,7 +8,7 @@ use lib\Connexion;
 use lib\MotCle;
 use DateTime;
 /**
- * Cette classe représente la gestion des mots avec les votes
+ * Cette classe représente la gestion des mots avec les votes de la table votes
  */
 class MotVotes_CRUD
 {

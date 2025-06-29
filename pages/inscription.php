@@ -58,7 +58,7 @@ if (is_a($connexion,"PDO")):
         if($creerUtilisateur){
             $utilisateur= $utilisateurCRUD->recupUtilisateurParPseudo($pseudo);
             $_SESSION['utilisateur'] = $utilisateur;
-            header("Location: index.php");
+            header("Location: index.php?inscription=succes");
         }
 
     }

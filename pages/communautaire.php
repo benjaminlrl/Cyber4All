@@ -52,6 +52,11 @@ if ($id_session):
             if (!$suppVote):
                 header('Location: communautaire.php?erreur=99');
             else:
+                if (isset($_POST['from_lexique']) && $_POST['from_lexique'] === 'true'):
+                    // Si on vient de lexique.php, on y retourne
+                    header("Location: lexiques.php");
+                    exit();
+                endif;
                 header('Location: communautaire.php?success=vote_supprime');
             endif;
             exit();
@@ -65,7 +70,13 @@ if ($id_session):
             if (!$vote):
                 header('Location: communautaire.php?erreur=98');
             else:
+                if (isset($_POST['from_lexique']) && $_POST['from_lexique'] === 'true'):
+                    // Si on vient de lexique.php, on y retourne
+                    header("Location: lexiques.php");
+                    exit();
+                endif;
                 header('Location: communautaire.php?success=vote_ajoute');
+                // Redirection conditionnelle
             endif;
             exit();
         endif;
@@ -75,7 +86,6 @@ if ($id_session):
         header('Location: communautaire.php?erreur=non_autorise');
         exit();
     endif;
-
 endif;
 ?>
 <?php include_once('../enTete.html'); ?>

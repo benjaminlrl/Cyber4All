@@ -24,8 +24,8 @@ class MotCle
     {
         //id à 0 pour incrémenter
         $this->id = $id;
-        $this->mot = $mot;
-        $this->definition = $definition;
+        $this->mot = htmlspecialchars(trim($mot));
+        $this->definition = htmlspecialchars(trim($definition));
     }
 
     /**

@@ -101,7 +101,7 @@ if ($id_session):
                         $token = uniqid('vote_', true);
                         $_SESSION['vote_tokens'][] = $token;?>
                         <input type="hidden" name="vote_token" value="<?= $token ?>">
-
+                        <input type="hidden" name="from_lexique" value="true">
                         <?php
                         $voteCRUD = new Vote_CRUD($connexion);
                         // Récupère tous les id des mots votés depuis lundi

@@ -49,4 +49,9 @@ section{
         padding-top: 80px; /* Compense le header fixe */
     }
 }
+@media (max-width: 769px) {
+    body {
+        padding-top: 150px; /* Compense le header fixe */
+    }
+}
 

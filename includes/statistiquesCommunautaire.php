@@ -25,10 +25,9 @@ if ($id_session):
     $connexion = $pdo->setConnexion();
     if(isset($_SESSION['utilisateur'])):
         $utilisateur = $_SESSION['utilisateur'];
-    endif;
-    $voteCRUD = new Vote_CRUD($connexion);
-    $nbVoteTotal = $voteCRUD->recupVotesTotalParUtilisateurId($utilisateur->getId());
-    $nbVotesSemaine = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
+        $voteCRUD = new Vote_CRUD($connexion);
+        $nbVoteTotal = $voteCRUD->recupVotesTotalParUtilisateurId($utilisateur->getId());
+        $nbVotesSemaine = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
 ?>
 <div class="user-stats">
     <h2 class="section-title">
@@ -54,4 +53,5 @@ if ($id_session):
         <?php include_once('afficherMotVotes.php'); ?>
     </div>
 </div>
+<?php endif; ?>
 <?php endif; ?>

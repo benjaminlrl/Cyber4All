@@ -28,15 +28,14 @@ if ($id_session):
     $connexion = $pdo->setConnexion();
     if(isset($_SESSION['utilisateur'])):
         $utilisateur = $_SESSION['utilisateur'];
-    endif;
-    //récupérer le nombre de vote de la semaine en cours par l'utilisateur
-    $voteCRUD = new Vote_CRUD($connexion);
-    $nbVotesSemaine = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
-    $nbVotesRestants = 5 - $nbVotesSemaine;
-    $motVotesCRUD = new MotVotes_CRUD($connexion);
-    $motsPopulaires = $motVotesCRUD->recupTousLesMotsPopulairesDateDESC();
-    $_SESSION['motsPopulaires'] = $motsPopulaires;
-endif;
+
+        //récupérer le nombre de vote de la semaine en cours par l'utilisateur
+        $voteCRUD = new Vote_CRUD($connexion);
+        $nbVotesSemaine = $voteCRUD->recupNbVotesSemaineEnCoursParUtilisateurId($utilisateur->getId());
+        $nbVotesRestants = 5 - $nbVotesSemaine;
+        $motVotesCRUD = new MotVotes_CRUD($connexion);
+        $motsPopulaires = $motVotesCRUD->recupTousLesMotsPopulairesDateDESC();
+        $_SESSION['motsPopulaires'] = $motsPopulaires;
 ?>
     <div class="vote-section">
         <h2 class="section-title">
@@ -52,3 +51,5 @@ endif;
         <?php include_once('afficherMotLexique.php'); ?>
         </div>
     </div>
+<?php endif; ?>
+<?php endif; ?>

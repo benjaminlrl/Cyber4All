@@ -350,4 +350,39 @@ class Utilisateur_CRUD
         }
         return $retour;
     }
+
+    /**
+     * recupClassementVotes permet de recuperer tous les utilisateurs qui ont le plus voté depuis toujours
+     * @return array
+     */
+    public function recupClassementVotes(): array
+    {
+        $req_select = $this->db->prepare("SELECT * , COUNT(id_vote) AS nb_votes
+                                            FROM utilisateurs U
+                                            INNER JOIN votes V ON V.id_utilisateur = U.id 
+                                            GROUP BY V.id_utilisateur
+                                            ORDER BY nb_votes DESC
+                                            LIMIT 8");
+        $utilisateurs = [];
+        try {
+            $req_select->execute();
+            $results=$req_select->fetchAll(PDO::FETCH_OBJ);
+            if($results)
+            {
+                foreach ($results as $result) {
+                    $utilisateur = new Utilisateur(
+                        strval($result->pseudo),
+                        strval($result->mot_de_passe),
+                        strval($result->role),
+                        $result->email,
+                        intval($result->id)
+                    );
+                    $utilisateurs []= $utilisateur;
+                }
+            }
+        } catch (PDOException $e) {
+            $utilisateurs = [];
+        }
+        return $utilisateurs;
+    }
 }
