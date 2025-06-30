@@ -65,7 +65,7 @@ Le site est accessible à l'adresse : https://cyber4all.benjaminlorieul.fr/
 ## 🛡️ Philosophie
 CYBER4ALL s'appuie sur la conviction que la cybersécurité ne doit pas être réservée aux experts. En rendant les concepts accessibles et en utilisant un langage clair, le site contribue à élever le niveau général de sécurité informatique.
 📞 Contact
-Auteur : Benjamin Lorieul
-Site web : benjaminlorieul.fr
+- Auteur : Benjamin Lorieul
+- Site web : benjaminlorieul.fr
 
 "La cybersécurité est l'affaire de tous - CYBER4ALL rend cette expertise accessible à chacun."
