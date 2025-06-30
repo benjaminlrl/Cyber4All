@@ -18,3 +18,9 @@ define("MDP_HASH", PASSWORD_DEFAULT);
 // ------ NOMBRE DE VOTE LIMITE PAR SEMAINE ------- //
 //////////////////////////////////////////////////////
 define("LIMITEVOTE", 5);
+
+//////////////////////////////////////////////////////
+// -------------  PARAMETRE GLOBAUX    ------------ //
+//////////////////////////////////////////////////////
+//Se caler sur le bon fuseau horraire
+date_default_timezone_set('Europe/Paris');

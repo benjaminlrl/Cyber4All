@@ -29,7 +29,7 @@ endif
             <img src="/Cyber4All_web/images/logos/CYBER4ALL/cyber4all_nobg_notxt.png"
                  alt="Logo CYBER4ALL"
                  class="header__logo">
-            <a href="/Cyber4All_web/pages/index.php"
+            <a href="/Cyber4All_web/pages/acceuil.php"
                title="Retour à l'accueil du site CYBER4ALL"
                class="header__lien-marque">
                 <h1 class="header__titre">CYBER<span class="header__titre--accent">4ALL</span></h1>
@@ -96,7 +96,7 @@ endif
                 </a>
             <?php endif; ?>
             <?php if(isset($_SESSION['utilisateur'])):?>
-                    <a href="index.php?deconnexion"
+                    <a href="acceuil.php?deconnexion"
                             class="btn-connexion">Se déconnecter</a>
         <?php endif; ?>
             </div>
