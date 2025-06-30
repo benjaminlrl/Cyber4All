@@ -49,13 +49,13 @@ if ($id_session):
             if (!$suppVote):
                 header('Location: communautaire.php?erreur=99');
             else:
-                //CAS 1 : L'utilisateur vote depuis lexique.php?mot= ...
-                if($_POST['from_lexiqueMotSeul'] === 'true'):
+                //CAS 1 : L'utilisateur vote depuis glossaire.php?mot= ...
+                if($_POST['from_glossaireMotSeul'] === 'true'):
                     $id_mot = $_POST['id_mot'];
-                    header("Location: lexiques.php?mot=$id_mot");
-                //CAS 2 : L'utilisateur vote depuis lexique.php
-                elseif ($_POST['from_lexique'] === 'true'):
-                    header("Location: lexiques.php");
+                    header("Location: glossaire.php?mot=$id_mot");
+                //CAS 2 : L'utilisateur vote depuis glossaire.php
+                elseif ($_POST['from_glossaire'] === 'true'):
+                    header("Location: glossaire.php");
                 //CAS 3 : L'utilisateur vote depuis communautaire.php
                 else:
                     header('Location: communautaire.php?success=vote_supprime');
@@ -72,13 +72,13 @@ if ($id_session):
             if (!$vote):
                 header('Location: communautaire.php?erreur=98');
             else:
-                //CAS 1 : L'utilisateur vote depuis lexique.php?mot= ...
-                if($_POST['from_lexiqueMotSeul'] === 'true'):
+                //CAS 1 : L'utilisateur vote depuis glossaire.php?mot= ...
+                if($_POST['from_glossaireMotSeul'] === 'true'):
                     $id_mot = $_POST['id_mot'];
-                    header("Location: lexiques.php?mot=$id_mot");
-                //CAS 2 : L'utilisateur vote depuis lexique.php
-                elseif ($_POST['from_lexique'] === 'true'):
-                    header("Location: lexiques.php");
+                    header("Location: glossaire.php?mot=$id_mot");
+                //CAS 2 : L'utilisateur vote depuis glossaire.php
+                elseif ($_POST['from_glossaire'] === 'true'):
+                    header("Location: glossaire.php");
                 //CAS 3 : L'utilisateur vote depuis communautaire.php
                 else:
                     header('Location: communautaire.php?success=vote_ajoute');

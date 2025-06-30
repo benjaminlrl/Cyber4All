@@ -1,7 +1,7 @@
 <?php
 ?>
 <section id="recherche">
-    <form action="lexiques.php"
+    <form action="glossaire.php"
           method="POST"
           class="form-recherche">
         <input type="search"

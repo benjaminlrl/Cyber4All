@@ -29,7 +29,7 @@ endif
             <img src="/Cyber4All_web/images/logos/CYBER4ALL/cyber4all_nobg_notxt.png"
                  alt="Logo CYBER4ALL"
                  class="header__logo">
-            <a href="/Cyber4All_web/pages/acceuil.php"
+            <a href="/Cyber4All_web/pages/accueil.php"
                title="Retour à l'accueil du site CYBER4ALL"
                class="header__lien-marque">
                 <h1 class="header__titre">CYBER<span class="header__titre--accent">4ALL</span></h1>
@@ -54,7 +54,7 @@ endif
                     </a>
                     <div class="dropdown-menu" role="menu">
                         <?php foreach ($categories as $categorie):?>
-                        <a href="lexiques.php?categorie=<?= $categorie->getId()?>"
+                        <a href="glossaire.php?categorie=<?= $categorie->getId()?>"
                            class="dropdown-menu__item"
                            title="Tout le lexique de la Catégorie <?= $categorie->getNom() ?>"
                            role="menuitem">
@@ -71,10 +71,10 @@ endif
                     </a>
                 </li>
                 <li class="menu-nav__item">
-                    <a href="lexiques.php"
+                    <a href="glossaire.php"
                        title="Tout le lexique de la cybersécurité"
                        class="menu-nav__lien">
-                        Lexique
+                        Glossaire
                     </a>
                 </li>
             </ul>

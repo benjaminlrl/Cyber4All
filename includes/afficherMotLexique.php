@@ -3,7 +3,7 @@
  * AFFICHAGE DES MOTS DU LEXIQUE
  *
  * Ce fichier gère l'affichage des mots selon différents contextes :
- * - Lexique complet (lexiques.php)
+ * - Lexique complet (glossaire.php)
  * - Mots populaires (communautaire.php)
  * - Recherche et filtrage par catégorie
  *
@@ -95,12 +95,12 @@ if ($id_session):
                                 <!-- Champ caché pour passer l'ID du mot
                                 et si l'utilisateur est sur la page avec un mot seul-->
                                 <input type="hidden" name="id_mot" value="<?= $mot->getId() ?>">
-                                <input type="hidden" name="from_lexiqueMotSeul" value="true">
+                                <input type="hidden" name="from_glossaireMotSeul" value="true">
                                 <?php // Si on n'est PAS sur la page communautaire (pas de $motsPopulaires)
-                                // alors on ajoute l'input pour rediriger vers lexiques.php après vote.
+                                // alors on ajoute l'input pour rediriger vers glossaire.php après vote.
                                 if(!isset($motsPopulaires)):?>
                                     <!-- Permet d'obtenir la provenance de la soumission du formulaire -->
-                                    <input type="hidden" name="from_lexique" value="true">
+                                    <input type="hidden" name="from_glossaire" value="true">
                                 <?php
                                 endif;
                                 // Générer un token unique pour ce formulaire
@@ -142,7 +142,7 @@ if ($id_session):
                         <?php
                         $categoriesDuMot = $listeCategories[$mot->getId()] ?? [];
                         foreach ($categoriesDuMot as $categorie):?>
-                            <a href="lexiques.php?categorie=<?= $categorie->getId() ?>"
+                            <a href="glossaire.php?categorie=<?= $categorie->getId() ?>"
                                class="lexique__categorie"
                                title="Catégorie du mot"
                                data-category="<?= $categorie->getId() ?>">
@@ -195,10 +195,10 @@ if ($id_session):
                         <!-- Champ caché pour passer l'ID du mot -->
                         <input type="hidden" name="id_mot" value="<?= $mot->getId() ?>">
                         <?php // Si on n'est PAS sur la page communautaire (pas de $motsPopulaires)
-                              // alors on ajoute l'input pour rediriger vers lexiques.php après vote.
+                              // alors on ajoute l'input pour rediriger vers glossaire.php après vote.
                         if(!isset($motsPopulaires)):?>
                             <!-- Permet d'obtenir la provenance de la soumission du formulaire -->
-                            <input type="hidden" name="from_lexique" value="true">
+                            <input type="hidden" name="from_glossaire" value="true">
                         <?php
                         endif;
                         // Générer un token unique pour ce formulaire
@@ -242,7 +242,7 @@ if ($id_session):
                 <?php
                 $categoriesDuMot = $listeCategories[$mot->getId()] ?? [];
                 foreach ($categoriesDuMot as $categorie):?>
-                 <a href="lexiques.php?categorie=<?= $categorie->getId() ?>"
+                 <a href="glossaire.php?categorie=<?= $categorie->getId() ?>"
                     class="lexique__categorie"
                     title="Catégorie du mot"
                     data-category="<?= $categorie->getId() ?>">
@@ -251,7 +251,7 @@ if ($id_session):
                 <?php endforeach; ?>
             </div>
             <div class="btn-more">
-                    <a href="lexiques.php?mot=<?= $mot->getId() ?>"
+                    <a href="glossaire.php?mot=<?= $mot->getId() ?>"
                        title="En savoir plus">
                         En savoir plus <i class="fa-solid fa-right"></i>
                     </a>
@@ -266,7 +266,7 @@ if (empty($mots)):?>
         <h3 class="lexique__title"
             title="Aucun résultat">Sois le premier de la communauté à voter pour un terme cette semaine !</h3>
         <br>
-        <a href="lexiques.php" class="btn-connexion">Aller voter
+        <a href="glossaire.php" class="btn-connexion">Aller voter
             <i class="fa-solid fa-shield"></i></a>
     <?php else: ?>
         <h3 class="lexique__title"

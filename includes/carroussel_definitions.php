@@ -42,7 +42,7 @@ endif
                 <?php
                 $categoriesDuMot = $listeCategories[$mot->getId()] ?? [];
                 foreach ($categoriesDuMot as $categorie):?>
-                    <a href="lexiques.php?categorie=<?= $categorie->getId()?>" class="lexique__categorie"
+                    <a href="glossaire.php?categorie=<?= $categorie->getId()?>" class="lexique__categorie"
                        title="Catégorie du mot" data-category="<?= $categorie->getId() ?>">
                         <?= $categorie->getNom() ?>
                     </a>

@@ -3,7 +3,7 @@
  * AFFICHAGE DES MOTS DU LEXIQUE
  *
  * Ce fichier gère l'affichage des mots selon différents contextes :
- * - Lexique complet (lexiques.php)
+ * - Lexique complet (glossaire.php)
  * - Mots populaires (communautaire.php)
  * - Recherche et filtrage par catégorie
  *

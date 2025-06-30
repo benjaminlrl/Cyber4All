@@ -1,5 +1,5 @@
 <?php
-include_once('../lib/Connexion.php');
+include_once('../lib/consts.php');
 include_once('../lib/MotCle_CRUD.php');
 include_once('../lib/MotCategorie_CRUD.php');
 include_once('../lib/Categorie_CRUD.php');

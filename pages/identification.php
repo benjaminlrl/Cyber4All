@@ -53,7 +53,7 @@ if (is_a($connexion,"PDO")):
             $_SESSION["utilisateur"] = $utilisateur;
 
             // Redirection vers la page demandée ou accueil
-            header("location: acceuil.php?connexion");
+            header("location: accueil.php?connexion");
             exit();
         }
     endif;
