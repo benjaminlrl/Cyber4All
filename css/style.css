@@ -31,6 +31,7 @@ body{
     align-items: center;
     background: url("/Cyber4All_web/images/background/background_logo.png") center top / cover no-repeat fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
 }
 
 section{

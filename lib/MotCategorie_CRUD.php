@@ -1,11 +1,14 @@
 <?php
 namespace lib;
-
 include_once('Connexion.php');
+include_once('Categorie.php');
+
 
 use PDO;
 use PDOException;
 use lib\Connexion;
+use lib\Categorie;
+use lib\MotCle;
 /**
  *Cette classe représente les associations des mots avec les catégories
  *ELle dispose d'un mot et d'une catégorie
@@ -108,11 +111,10 @@ class MotCategorie_CRUD
             INNER JOIN motcle_categorie Mc ON Mc.id_categorie=C.id
             WHERE Mc.id_motcle = :id_mot");
         $req_select->bindParam(":id_mot",$id_mot, PDO::PARAM_INT);
-
+        $categories = [];
         try {
             $req_select->execute();
             $results=$req_select->fetchAll(PDO::FETCH_OBJ);
-            $categories=[];
             if($results){
                 foreach($results as $result){
                     $categorie = new Categorie(

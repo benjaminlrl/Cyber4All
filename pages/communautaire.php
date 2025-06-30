@@ -8,13 +8,16 @@ include_once(__DIR__ . '/../lib/Vote.php');
 include_once(__DIR__ . '/../lib/Vote_CRUD.php');
 include_once(__DIR__ . '/../lib/Utilisateur.php');
 include_once(__DIR__ . '/../lib/Utilisateur_CRUD.php');
+include_once(__DIR__ . '/../lib/BandeauNotification.php');
 
 use lib\Categorie_CRUD;
+use lib\Categorie;
 use lib\Connexion;
 use lib\MotCle_CRUD;
 use lib\MotCategorie_CRUD;
 use lib\Vote;
 use lib\Vote_CRUD;
+use lib\BandeauNotification;
 use lib\Utilisateur_CRUD;
 use lib\Utilisateur;
 
@@ -26,6 +29,16 @@ $id_session = session_id();
 if ($id_session):
     $pdo = new Connexion("user");
     $connexion = $pdo->setConnexion();
+
+    //gestion des notifications
+    if(isset($_GET['demandeCreation']) && $_GET['demandeCreation'] == "succes"):
+        $notification = new BandeauNotification("SUCCES",
+            "Demande de création réussi",
+            "Nous sommes très heureux de vous voir contribuer à la communauté de CYBER4ALL, votre demande
+                de création va être examiné par nos admin, vous recevrez une notification dans votre espace compte 
+                si celle ci sera accepté ou refusé !");
+        $notification = $notification->notificationInfo($notification);
+    endif;
 
     // TRAITEMENT DES VOTES : Seulement si utilisateur connecté ET formulaire soumis
     if (isset($_SESSION['utilisateur']) && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote_token'])):
@@ -44,7 +57,7 @@ if ($id_session):
             return $token !== $submitted_token;
         });
 
-        // Traitement suppression de vote
+// Traitement suppression de vote
         if (!empty($_POST['suppVote'])):
             $id_vote = $_POST['suppVote'];
             $voteCrud = new Vote_CRUD($connexion);
@@ -52,17 +65,16 @@ if ($id_session):
             if (!$suppVote):
                 header('Location: communautaire.php?erreur=99');
             else:
-                if (isset($_POST['from_lexique']) && $_POST['from_lexique'] === 'true'):
-                    // Si on vient de lexique.php, on y retourne
+                if ($_POST['from_lexique'] === 'true'):
                     header("Location: lexiques.php");
-                    exit();
+                else:
+                    header('Location: communautaire.php?success=vote_supprime');
                 endif;
-                header('Location: communautaire.php?success=vote_supprime');
             endif;
-            exit();
+            exit; // ← Déplacé ici pour sortir après toutes les redirections
         endif;
 
-        // Traitement ajout de vote
+// Traitement ajout de vote
         if ((!empty($_POST['voter']) && $_POST['voter'] === 'voter') && !empty($_POST['id_mot'])):
             $vote = new Vote($utilisateur->getId(), $_POST['id_mot']);
             $voteCrud = new Vote_CRUD($connexion);
@@ -70,15 +82,13 @@ if ($id_session):
             if (!$vote):
                 header('Location: communautaire.php?erreur=98');
             else:
-                if (isset($_POST['from_lexique']) && $_POST['from_lexique'] === 'true'):
-                    // Si on vient de lexique.php, on y retourne
+                if ($_POST['from_lexique'] === 'true'):
                     header("Location: lexiques.php");
-                    exit();
+                else:
+                    header('Location: communautaire.php?success=vote_ajoute');
                 endif;
-                header('Location: communautaire.php?success=vote_ajoute');
-                // Redirection conditionnelle
             endif;
-            exit();
+            exit; // ← Un seul exit à la fin
         endif;
 
     elseif ($_SERVER['REQUEST_METHOD'] === 'POST'):
@@ -90,7 +100,8 @@ endif;
 ?>
 <?php include_once('../enTete.html'); ?>
     <body id="top">
-    <?php require_once("../includes/header.php"); ?>
+    <?php include_once('../includes/header.php'); ?>
+    <?= isset($notification) ? $notification : null; ?>
     <section>
         <div class="container">
             <div class="dashboard">

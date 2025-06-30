@@ -40,8 +40,10 @@ class MotCleValidation_CRUD
         $req_insert->bindValue(':definition', $motCle->getDefinition(), PDO::PARAM_STR);
         try {
             $req_insert->execute();
-            if($req_insert->fetch(PDO::FETCH_OBJ)){
-                    $retour = true;
+            if($req_insert->rowCount() > 0){
+                $retour = true;
+            } else {
+                $retour = false;
             }
         }
         catch(PDOException $e) {
@@ -89,5 +91,46 @@ class MotCleValidation_CRUD
         return $motsEnAttente;
     }
 
+    /**
+     * recupToutesDemandesEnAttenteParUtilisateurID permet de récupérer
+     * toutes les demandes de validation par l'id de l'utilisateur
+     * de mots en attente.
+     * @param int $id_utilisateur
+     * @return array
+     */
+    public function recupToutesDemandesParUtilisateurID(int $id_utilisateur):array{
+        $req_select=$this->db->prepare('SELECT * 
+                                        FROM motcle_validation
+                                        WHERE id_utilisateur = :id_utilisateur');
+        $req_select->bindValue(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+        try {
+            $req_select->execute();
+            $results = $req_select->fetchAll(PDO::FETCH_OBJ);
+            $motsEnAttente = [];
+            if($results){
+                foreach($results as $result){
+                    $date_demande = new DateTime($result->date_demande);
+                    $date_validation = $result->date_validation ? new DateTime($result->date_validation) : null;
+
+                    $motEnAttente = new MotCleValidation(
+                        $result->id_utilisateur,
+                        $result->motcle,
+                        $result->definition,
+                        $result->statut,
+                        $result->id_motcle_validation,
+                        $date_demande,
+                        $date_validation,
+                        $result->id_admin
+                    );
+                    $motsEnAttente[]=$motEnAttente;
+                }
+            }
+        }
+        catch(PDOException $e) {
+            error_log("Erreur recupToutesDemandesEnAttenteParUtilisateurID : " . $e->getMessage());
+            $motsEnAttente = [];
+        }
+        return $motsEnAttente;
+    }
 
 }

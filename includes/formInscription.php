@@ -101,9 +101,6 @@ if(!empty($_GET['erreur'])){
                 <i class='fa-solid fa-eye'></i>
             </button>
         </div>
-    </div>
-
-    <div class="input-container">
         <div class="password-container">
             <input type='password'
                    id='mdp_validation'
@@ -117,6 +114,11 @@ if(!empty($_GET['erreur'])){
                    required>
             <i class='fa-solid fa-lock-keyhole input-icon'></i>
         </div>
+        <small class="champIndication">Minimum 13 caractères dont au moin:
+            <br> - 1 minuscule - 1 Majuscule
+            <br> - 1 symbole parmi  .*?!%@=$£\[]+
+            <br> - Ne doit pas contenir le pseudo
+        </small>
     </div>
 
 

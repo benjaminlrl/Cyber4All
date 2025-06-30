@@ -2,9 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(isset($_GET['erreur']) && $_GET['erreur']!=99){
-    exit;
-}
 if(isset($_SESSION['utilisateur'])){
     $utilisateur = $_SESSION['utilisateur'];
 }
@@ -12,11 +9,11 @@ if(isset($_SESSION['utilisateur'])){
 <?php if (!isset($utilisateur)):?>
 <form action='identification.php' method='POST' class="form-connexion">
     <h1>Se connecter</h1>
-    <?php if(isset($_GET['erreur']) && $_GET['erreur']=99): ?>
+    <?php if(isset($_GET['erreur']) && $_GET['erreur']==99): ?>
     <div class="input-container">
         <h2>Utilisateur non identifié, mot de passe ou pseudo incorrect</h2>
     </div>
-    <?php endif;?>
+    <?php endif; ?>
     <div class="input-wrapper">
         <div class="input-container">
             <input type='text'
@@ -58,11 +55,17 @@ if(isset($_SESSION['utilisateur'])){
                 </button>
             </div>
         </div>
-    <small class="champIndication">Entre 3 et 13 caractères
+    <small class="champIndication">Minimum 13 caractères
     </small>
     </div>
 
     <a href="#">Mot de passe oublié ?</a>
+
+    <?php // Générer un token unique pour ce formulaire
+    $token = uniqid('connexion_', true);
+    $_SESSION['connexion_tokens'][] = $token;?>
+    <input type="hidden" name="connexion_token" value="<?= $token //pour ne pas ressoumettre le
+    // formulaire au refresh de la page?>">
 
     <button type='submit' class='btn-submit-connexion'>
         Se connecter

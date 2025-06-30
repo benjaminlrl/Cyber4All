@@ -12,18 +12,31 @@ use lib\BandeauNotification;
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 //se connecte en user, vérification admin plus tard
 $pdo = new Connexion("user");
 $connexion = $pdo->setConnexion();
-
 if (is_a($connexion,"PDO")):
+    if(isset($_POST['connexion_token'])):
+        $submitted_token = $_POST['connexion_token'];
+
+        // CORRECTION : Utiliser le bon nom de variable avec 's'
+        if (!isset($_SESSION['connexion_tokens']) || !in_array($submitted_token, $_SESSION['connexion_tokens'])):
+            // Token invalide ou déjà utilisé
+            header('Location: identification.php?erreur=token_invalide');
+            exit();
+        endif;
+
+        // CORRECTION : Utiliser les bons noms de variables
+        $_SESSION['connexion_tokens'] = array_filter($_SESSION['connexion_tokens'], function($token) use ($submitted_token) {
+            return $token !== $submitted_token;
+        });
+    endif;
     if(isset($_GET['erreur'])):
         $erreur = $_GET['erreur'];
         if($erreur == "99"){
             $notification = new BandeauNotification("ERREUR",
                 "Déconnexion",
-                "Vous avez été déconnecté");
+                "Utilisateur non identifié, mot de passe ou pseudo incorrect");
             $notification = $notification->notificationInfo($notification);
         }
     endif;

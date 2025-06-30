@@ -12,7 +12,10 @@
     position: relative;
     z-index: 1;
 }
-
+.form-connexion.ajout-mot{
+    width: 65%;
+    max-width: 800px;
+}
 .form-modifier-moncompte{
     background: var(--transparent);
     /* border: solid var(--white) 1px; */
@@ -38,12 +41,14 @@
 .form-modifier-moncompte .input-container,
 .form-connexion .input-container {
     position: relative;
+    margin-top: 1.5rem;
 }
 
 .input-wrapper{
     margin-top: 1.5rem;
 }
 
+.form-connexion.ajout-mot textarea,
 .form-modifier-moncompte .input-box-connexion,
 .form-connexion .input-box-connexion {
     width: 100%;
@@ -56,6 +61,19 @@
     color: var(--gray-700);
 }
 
+.form-connexion.ajout-mot h1{
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.form-connexion.ajout-mot textarea {
+    resize: vertical;
+    min-height: 200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.form-connexion.ajout-mot textarea:focus,
 .form-modifier-moncompte .input-box-connexion:focus,
 .form-connexion .input-box-connexion:focus {
     outline: none;
@@ -63,10 +81,13 @@
     background: var(--bg-form-focus);
     box-shadow: 0 0 0 4px var(--shadow-form-focus);
 }
+
+.form-connexion.ajout-mot textarea::placeholder,
 .form-modifier-moncompte input-box-connexion::placeholder,
 .form-connexion .input-box-connexion::placeholder {
     color: var(--text-placeholder);
 }
+
 .form-modifier-moncompte .input-icon,
 .form-connexion .input-icon {
     position: absolute;
@@ -191,7 +212,6 @@
     .form-modifier-moncompte,
     .form-connexion {
         padding: 30px 25px;
-        margin: 20px;
     }
     .form-modifier-moncompte h1,
     .form-connexion h1 {

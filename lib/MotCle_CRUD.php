@@ -87,7 +87,7 @@ class MotCle_CRUD
     }
 
     /**
-     * recupTousLesMots permet d'afficher tous les mots de la table motcle
+     * recupTousLesMots permet de récupérer tous les mots de la table motcle
      * par ordre alphabétiques
      * @return array
      */
@@ -112,6 +112,33 @@ class MotCle_CRUD
             error_log("Erreur recupTousLesMots : " . $e->getMessage());
         }
         return $mots;
+    }
+
+    /**
+     * recupMotParId permet de récupérer un mot par son id la table motcle
+     * @return MotCle|null
+     */
+    public function recupMotParId(int$id_mot): ?MotCle{
+        $req_select=$this->db->prepare("SELECT * FROM motcle 
+         WHERE id = :id");
+        $req_select->bindValue(':id', $id_mot, PDO::PARAM_INT);
+        $mot = null;
+        try {
+            $req_select->execute();
+            $result=$req_select->fetch(PDO::FETCH_OBJ);
+            if($result){
+                $mot = new motCle(
+                    $result->mot,
+                    $result->definition,
+                    $result->id
+                );
+            }
+        }
+        catch(PDOException $e) {
+            $mot = null;
+            error_log("Erreur recupTousLesMots : " . $e->getMessage());
+        }
+        return $mot;
     }
 
     /**

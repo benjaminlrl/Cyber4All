@@ -21,6 +21,31 @@
     position: relative;
     overflow: hidden;
 }
+.lexique-container.demande {
+    width: 80%;
+    margin-top: .8rem;
+    display: flex;
+    justify-content: space-between;
+}
+.lexique-container.demande input{
+    height: fit-content;
+    padding: .4rem .8rem;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.lexique-container.demande h3,
+.lexique-container.demande p,
+.lexique-container.demande h3:hover,
+.lexique-container.demande p:hover{
+    cursor: default;
+}
+
+.lexique__header.demande{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+ }
 .lexique-container-static{
     background: none;
     border-radius: 16px;
@@ -28,8 +53,23 @@
     position: relative;
     overflow: hidden;
 }
-
-
+.lexique-container.mot-seul{
+    width: 1000px;
+    min-height: 50vh;
+}
+.lexiques-wrapper.mot-seul {
+    max-width: 80%;
+    display: flex;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 40px;
+}
+.lexique__title.mot-seul{
+    font-size: 2rem;
+}
+.lexique_categories.mot-seul{
+    margin: 2rem 0;
+}
 .lexique-container::before {
     content: '';
     position: absolute;
@@ -229,6 +269,16 @@
     text-align: justify;
     transition: color 0.3s ease;
 }
+.btn-more{
+    width: 100%;
+    display: flex;
+    font-weight: 600;
+    justify-content: end;
+}
+.btn-more a{
+    text-decoration: none;
+    color: var(--blue-marine);
+}
 
 .lexique-container:hover .lexique__definition {
     color: var(--gray-text-darker);
@@ -256,6 +306,9 @@
     padding: 0;
     margin: 0;
     background: none;
+}
+.lexique-container{
+    height: 100%;
 }
 .lexiques__title-static{
     cursor: default;
@@ -822,7 +875,7 @@
 
     .lexique-container {
         margin-bottom: 0;
-        height: fit-content;
+        height: 100%;
     }
 }
 

@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 include_once('../lib/Utilisateur.php');
 include_once('../lib/Utilisateur_CRUD.php');
 include_once('../lib/Connexion.php');
@@ -73,7 +71,7 @@ if($sessionId):
             endif;
 
 
-        //traitement du formulaire et des données
+            //traitement du formulaire et des données
             if(!empty($_POST['nouvPseudo']) && isset($_POST['nouvEmail'])):
 
                 $nouvPseudo = htmlspecialchars($_POST['nouvPseudo']);
@@ -88,7 +86,7 @@ if($sessionId):
                     header("Location: monCompte.php?modification=aucune");
                     exit;
                 endif;
-                if(filter_var($nouvEmail, FILTER_VALIDATE_EMAIL)!==true):
+                if(filter_var($nouvEmail, FILTER_VALIDATE_EMAIL)===false):
                     header("Location: monCompte.php?erreur=96");
                     exit;
                 endif;
@@ -161,10 +159,7 @@ echo isset($notification) ? $notification : ""; ?>
             </div>
         </div>
         <div class="compte-ligne-bas">
-            <div class="compte-stats-placeholder">
-                <h3>Statistiques à venir</h3>
-                <p>Cette section affichera les stats, votes, etc.</p>
-            </div>
+            <?php include_once("../includes/afficherDemandesCreationMots.php"); ?>
         </div>
     </div>
 </div>

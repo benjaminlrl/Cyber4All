@@ -12,6 +12,7 @@ include_once('../lib/Utilisateur_CRUD.php');
 include_once('../lib/consts.php');
 
 use lib\Categorie_CRUD;
+use lib\Categorie;
 use lib\Connexion;
 use lib\MotCle_CRUD;
 use lib\MotCle;
@@ -38,9 +39,12 @@ if ($id_session):
         $_SESSION['motsPopulaires'] = $motsPopulaires;
 ?>
     <div class="vote-section">
-        <h2 class="section-title">
-            📝 Mots proposés par la communauté
-        </h2>
+        <div class="header-populaire">
+            <h2 class="section-title">
+                📝 Mots proposés par la communauté
+            </h2>
+            <a href="ajoutLexique.php" class="btn-connexion">Ajouter un mot  <i class="fa-solid fa-plus"></i></a>
+        </div>
 
         <div class="votes-remaining">
             <strong><?= $nbVotesRestants?> votes restants</strong> cette semaine (renouvellement tous les lundis)

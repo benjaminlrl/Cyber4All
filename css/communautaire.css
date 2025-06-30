@@ -27,6 +27,13 @@
     grid-template-columns: 1fr;
 }
 
+.header-populaire{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 .user-stats {
     background: var(--white);
     border-radius: 15px;
@@ -38,10 +45,10 @@
 .section-title {
     font-size: 1.5rem;
     color: #333;
-    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    padding: 0.2rem;
 }
 
 .user-info {
@@ -331,6 +338,21 @@
     }
     .container{
         width: 100%;
+        padding: 0;
+    }
+
+    .user-stats {
+        padding: 2rem 3.8rem;
+    }
+    .lexique-container{
+        height: fit-content;
+    }
+    .header-populaire{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
     }
 }
 /*mobile*/

@@ -2,10 +2,12 @@
 include_once('../lib/Utilisateur.php');
 include_once('../lib/Utilisateur_CRUD.php');
 include_once('../lib/Connexion.php');
+include_once('../lib/BandeauNotification.php');
 
 use lib\Utilisateur;
 use lib\Utilisateur_CRUD;
 use lib\Connexion;
+use lib\BandeauNotification;
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -27,39 +29,74 @@ if (is_a($connexion,"PDO")):
         // Instanciation
         $utilisateurCRUD = new Utilisateur_CRUD($connexion);
 
+        if(isset($_GET['erreur'])):
+            $erreur = $_GET['erreur'];
+            if($erreur == "96"){
+                $notification = new BandeauNotification("ERREUR",
+                    "Inscription",
+                    "Votre mot de passe ne peut pas contenir votre pseudo !");
+                $notification = $notification->notificationInfo($notification);
+            }
+            if($erreur == "97"){
+                $notification = new BandeauNotification("ERREUR",
+                    "Inscription",
+                    "L'adresse email est déjà associé à un compte existant, 
+                    veuillez en saisir une autre!");
+                $notification = $notification->notificationInfo($notification);
+            }
+            if($erreur == "98"){
+                $notification = new BandeauNotification("ERREUR",
+                    "Inscription",
+                    "Le pseudo saisie existe déjà, veuillez en choisir un autre!");
+                $notification = $notification->notificationInfo($notification);
+            }
+            if($erreur == "99"){
+                $notification = new BandeauNotification("ERREUR",
+                    "Inscription",
+                    "Les mots de passes saisie ne sont pas identiques !");
+                $notification = $notification->notificationInfo($notification);
+            }
+        endif;
+        // Vérification que le pseudo et le mot de passe ne se contiennent pas mutuellement
+        if ((!empty($pseudo) && !empty($mdp)) &&
+            (str_contains(strtolower($mdp), strtolower($pseudo)) ||
+                str_contains(strtolower($pseudo), strtolower($mdp)))) :
+            $_SESSION['utilisateur_pseudo'] = $pseudo;
+            $_SESSION['utilisateur_email'] = $email;
+            header("Location: inscription.php?erreur=96");
+            exit;
+        endif;
         // Vérification si l'adresse email existe
-        if (!empty($email) && $utilisateurCRUD->adresseEmailExiste($email)) {
+        if (!empty($email) && $utilisateurCRUD->adresseEmailExiste($email)) :
             $_SESSION['utilisateur_pseudo'] = $pseudo;
             $_SESSION['utilisateur_email'] = $email;
             header("Location: inscription.php?erreur=97");
             exit;
-        }
-
+        endif;
         // Vérification si le pseudo existe
-        if ($utilisateurCRUD->pseudoExiste($pseudo)) {
+        if ($utilisateurCRUD->pseudoExiste($pseudo)) :
             if (!empty($email)) {
                 $_SESSION['utilisateur_email'] = $email;
             }
             header("Location: inscription.php?erreur=98");
             exit;
-        }
-
+        endif;
         // Vérification des mots de passe
-        if ($mdp !== $mdpValidation) {
+        if ($mdp !== $mdpValidation) :
             $_SESSION['utilisateur_pseudo'] = $pseudo;
             if (!empty($email)) {
                 $_SESSION['utilisateur_email'] = $email;
             }
             header("Location: inscription.php?erreur=99");
             exit;
-        }
+        endif;
         //créer l'utilisateur contriuteur de base.
         $creerUtilisateur = $utilisateurCRUD->creerUtilisateur($pseudo, "contributeur", $mdp, $email);
-        if($creerUtilisateur){
+        if($creerUtilisateur):
             $utilisateur= $utilisateurCRUD->recupUtilisateurParPseudo($pseudo);
             $_SESSION['utilisateur'] = $utilisateur;
             header("Location: index.php?inscription=succes");
-        }
+        endif;
 
     }
 ?>
@@ -67,6 +104,7 @@ if (is_a($connexion,"PDO")):
 <body id="top">
 <?php
 require_once("../includes/header.php"); ?>
+<?= isset($notification)? $notification: null?>
 <section>
     <?php require_once("../includes/formInscription.php"); ?>
 </section>

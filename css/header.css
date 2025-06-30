@@ -338,6 +338,12 @@
         font-size: 13px;
     }
 }
+@media (max-width: 480px){
+    .header__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 /* Responsive Tablette */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -358,3 +364,5 @@
         font-size: 22px;
     }
 }
+
+
