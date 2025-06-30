@@ -37,7 +37,7 @@ if (is_a($connexion,"PDO")):
             $notification = new BandeauNotification("ERREUR",
                 "Déconnexion",
                 "Utilisateur non identifié, mot de passe ou pseudo incorrect");
-            $notification = $notification->notificationInfo($notification);
+            $notification = $notification->afficherNotification($notification);
         }
     endif;
     if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])):
@@ -58,7 +58,7 @@ if (is_a($connexion,"PDO")):
             $_SESSION["utilisateur"] = $utilisateur;
 
             // Redirection vers la page demandée ou accueil
-            header("location: index.php?connexion");
+            header("location: acceuil.php?connexion");
             exit();
         }
     endif;

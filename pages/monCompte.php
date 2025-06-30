@@ -28,13 +28,13 @@ if($sessionId):
                     $notification = new BandeauNotification("SUCCES",
                         "Les modification ont réussie",
                         "Les modifications ont bien été prises en compte");
-                    $notification = $notification->notificationInfo($notification);
+                    $notification = $notification->afficherNotification($notification);
                 }
                 if($succes == "aucune") {
                     $notification = new BandeauNotification("INFO",
                         "Aucune modification effectuée",
                         "Ni le pseudo ni l'adresse email ont été modifié");
-                    $notification = $notification->notificationInfo($notification);
+                    $notification = $notification->afficherNotification($notification);
                 }
             endif;
             if(!empty($_GET['erreur'])):
@@ -44,7 +44,7 @@ if($sessionId):
                     $notification = new BandeauNotification("ERREUR",
                         "Echec de la modification",
                         "Pseudo déjà existant, veuillez en choisir un autre");
-                    $notification = $notification->notificationInfo($notification);
+                    $notification = $notification->afficherNotification($notification);
                     isset($_SESSION['nouvEmail']) ?
                         $nouvEmail = $_SESSION['nouvEmail']:
                         $nouvEmail = null;
@@ -53,7 +53,7 @@ if($sessionId):
                     $notification = new BandeauNotification("ERREUR",
                         "Echec de la modification",
                         "Cette adresse email est déjà associé à un compte");
-                    $notification = $notification->notificationInfo($notification);
+                    $notification = $notification->afficherNotification($notification);
                     isset($_SESSION['nouvPseudo']) ?
                         $nouvPseudo = $_SESSION['nouvPseudo'] :
                         $nouvPseudo = "";
@@ -62,7 +62,7 @@ if($sessionId):
                     $notification = new BandeauNotification("ERREUR",
                         "Echec de la modification",
                         "L'addresse email renseigné n'est pas valide");
-                    $notification = $notification->notificationInfo($notification);
+                    $notification = $notification->afficherNotification($notification);
                     isset($_SESSION['nouvPseudo']) ?
                         $nouvPseudo = $_SESSION['nouvPseudo'] :
                         $nouvPseudo = "";

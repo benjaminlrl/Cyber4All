@@ -12,7 +12,7 @@ if(isset($_GET['deconnexion'])){
     $notification = new BandeauNotification("SUCCES",
             "Déconnexion réussi",
             "Hâte de vous revoir !");
-    $notification = $notification->notificationInfo($notification);
+    $notification = $notification->afficherNotification($notification);
 }
 
 //Gestion des notifications
@@ -20,7 +20,7 @@ if(isset($_GET['connexion']) && isset($_SESSION['utilisateur'])):
     $notification = new BandeauNotification("SUCCES",
         "Connexion réussi",
         "C'est l'heure d'en apprendre plus sur la cybersécurité !");
-    $notification = $notification->notificationInfo($notification);
+    $notification = $notification->afficherNotification($notification);
 endif;
 if(isset($_GET['connexion']) && !isset($_SESSION['utilisateur'])):
     header("location: identification.php");
@@ -30,7 +30,7 @@ if(isset($_GET['inscription']) && isset($_SESSION['utilisateur'])):
         "Incription réussi",
         "Nous sommes très heureux de vous voir rejoindre la communauté de CYBER4ALL, explorez, 
         votez et contribuez pleinement à l'évolution de notre site !");
-    $notification = $notification->notificationInfo($notification);
+    $notification = $notification->afficherNotification($notification);
 endif;
 include_once('../enTete.html');
 ?>

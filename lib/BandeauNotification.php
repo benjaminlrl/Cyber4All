@@ -15,6 +15,8 @@ class BandeauNotification
 
     /**
      * Initialise une nouvelle instance de la classe notification
+     * Elle dispose d'un type (ERREUR, ATTENTION, INFO, SUCCES)
+     * D'un titre général et des details sur le message à afficher
      * @param string $type
      * @param string $titre
      * @param string $details
@@ -25,7 +27,13 @@ class BandeauNotification
         $this->details = $details;
     }
 
-    public function notificationInfo(BandeauNotification $bandeauNotification): string{
+    /**
+     * afficherNotification permet d'afficher une instance de la classe notification
+     * Elle dispose d'un objet de type BandeauNotification
+     * @param BandeauNotification $bandeauNotification
+     * @return string le code html/js de la notification
+     */
+    public function afficherNotification(BandeauNotification $bandeauNotification): string{
         $type = $bandeauNotification->type;
         $titre = $bandeauNotification->titre;
         $details = $bandeauNotification->details;

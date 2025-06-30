@@ -37,7 +37,7 @@ if ($id_session):
             "Nous sommes très heureux de vous voir contribuer à la communauté de CYBER4ALL, votre demande
                 de création va être examiné par nos admin, vous recevrez une notification dans votre espace compte 
                 si celle ci sera accepté ou refusé !");
-        $notification = $notification->notificationInfo($notification);
+        $notification = $notification->afficherNotification($notification);
     endif;
 
     // TRAITEMENT DES VOTES : Seulement si utilisateur connecté ET formulaire soumis

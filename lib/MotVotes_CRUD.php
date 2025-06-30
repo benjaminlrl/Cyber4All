@@ -27,7 +27,7 @@ class MotVotes_CRUD
      * recupTousLesMotsVotesParUtilisateurId permet de récupérer
      * tous les mots votés de la semaine en cours
      * @param int $id_utilisateur
-     * @return array
+     * @return array Tableau conteant des MotCle
      */
     public function recupTousLesMotsVotesSemaineEnCoursParUtilisateurId(int $id_utilisateur):array{
         // Lundi de la semaine précédente
@@ -46,7 +46,7 @@ class MotVotes_CRUD
             $mots=[];
             if($results){
                 foreach($results as $result){
-                    $mot = new motCle(
+                    $mot = new MotCle(
                         $result->mot,
                         $result->definition,
                         $result->id
@@ -60,6 +60,13 @@ class MotVotes_CRUD
         }
         return $mots;
     }
+
+    /**
+     * recupTousLesMotsPopulairesDateDESC permet de récupérer tous les mots populaires.
+     * Ils sont dans un premier temps trié du plus récent au plus ancien.
+     * Puis trier par nombre de votes de plus important au plus faible.
+     * @return array Tableau contenant des des Motcle
+     */
     public function recupTousLesMotsPopulairesDateDESC():array{
         $req_select=$this->db->prepare("SELECT M.*, COUNT(V.id_vote) AS nbVotes 
                         FROM motcle M 
@@ -73,7 +80,7 @@ class MotVotes_CRUD
             $mots=[];
             if($results){
                 foreach($results as $result){
-                    $mot = new motCle(
+                    $mot = new MotCle(
                         $result->mot,
                         $result->definition,
                         $result->id

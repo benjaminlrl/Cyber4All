@@ -10,7 +10,7 @@ use PDOException;
 /**
  *Connexion est une classe
  *qui permet de gérer la connexion à la base de données.
- *Elle prend ses paramètres dans le fichier qui contient les constantes
+ *Elle prend ses paramètres dans le fichier consts.php
  */
 class Connexion
 {
@@ -21,7 +21,8 @@ class Connexion
 
     /**
      * Initialise une nouvelle instance de la classe connexion
-     * en fonction du type d'utilisateur user ou admin.
+     * en fonction du type d'utilisateur user ou admin
+     * en fonction des droits attribué aux utilisateurs
      */
     public function __construct($typeUser)
     {

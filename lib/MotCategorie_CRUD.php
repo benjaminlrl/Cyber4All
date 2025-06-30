@@ -3,7 +3,6 @@ namespace lib;
 include_once('Connexion.php');
 include_once('Categorie.php');
 
-
 use PDO;
 use PDOException;
 use lib\Connexion;
@@ -27,10 +26,10 @@ class MotCategorie_CRUD
     }
 
     /**
-     * recupTousLesMotsDuneCategorie permet de récuperer tous les monts d'une catégorie
-     * reoturne une liste de mots
+     * recupTousLesMotsDuneCategorie permet de récuperer tous les mots d'une catégorie
+     * par la catégorie de type Categorie
      * @param Categorie $categorie
-     * @return array
+     * @return array Tableau contenant tous les mots de la catégorie
      */
     public function recupTousLesMotsDuneCategorie(Categorie $categorie): array{
         $id_categorie = $categorie->getId();
@@ -40,7 +39,6 @@ class MotCategorie_CRUD
              WHERE C.id = :id");
         $req_select->bindParam(":id",$id_categorie, PDO::PARAM_INT);
 
-        $results=$req_select->fetchAll(PDO::FETCH_OBJ);
         try {
             $req_select->execute();
             $results=$req_select->fetchAll(PDO::FETCH_OBJ);
@@ -64,10 +62,11 @@ class MotCategorie_CRUD
 
 
     /**
-     * recupTousLesMotsDuneCategorieByID permet de récuperer tous les mots d'une catégorie par son id
+     * recupTousLesMotsDuneCategorieParID permet de récuperer
+     * tous les mots d'une catégorie par son id
      * reoturne une liste de mots
      * @param Categorie $categorie
-     * @return array
+     * @return array Tableau contenant tous les mots de la catégorie
      */
     public function recupTousLesMotsDuneCategorieParID(int $categorieID): array{
         $req_select=$this->db->prepare("SELECT M.id, M.mot, M.definition FROM motcle M      
@@ -92,17 +91,17 @@ class MotCategorie_CRUD
             }
         }
         catch(PDOException $e) {
-            error_log("Erreur recupTousLesMotsDuneCategorie : " . $e->getMessage());
+            error_log("Erreur recupTousLesMotsDuneCategorieParId : " . $e->getMessage());
             return [];
         }
         return $mots;
     }
 
     /**
-     * recupToutesLesCategoriesDunMot permet de récuperer toutes les catégories d'un mot
-     * retourne une liste de catégories
+     * recupToutesLesCategoriesDunMot permet de récuperer
+     * toutes les catégories d'un mot par un mot
      * @param MotCle $mot
-     * @return array
+     * @return array Tableau contenant toutes les catégories du mot
      */
     public function recupToutesLesCategoriesDunMot(MotCle $mot): array{
         $id_mot = $mot->getId();

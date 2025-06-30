@@ -31,7 +31,7 @@ class Vote_CRUD
     /**
      * creerVote permet d'ajouter un nouveau vote à la table votes
      * @param \lib\Vote $vote
-     * @return bool
+     * @return bool vraie si la création a réussi
      */
     public function creerVote(Vote $vote): bool
     {
@@ -57,7 +57,7 @@ class Vote_CRUD
     /**
      * deleteVote permet de supprimer un vote par son id de la table votes
      * @param \lib\Vote $vote
-     * @return bool
+     * @return bool vraie si la suppression a réussi
      */
     public function deleteVoteParIdVote(int $id_vote): bool
     {
@@ -80,7 +80,7 @@ class Vote_CRUD
      * recupVotesTotalParUtilisateurId permet de récupérer le nombre
      * total de votes d'un utilisateur
      * @param int $id_utilisateur
-     * @return int
+     * @return int Nombres de vote
      */
     public function recupVotesTotalParUtilisateurId(int $id_utilisateur):int{
         $req_select = $this->db->prepare("SELECT COUNT(id_vote) AS nb_votes
@@ -103,7 +103,7 @@ class Vote_CRUD
      * recupNbVotesDepuisJourParUtilisateurId permet de récupérer le nombre
      * total de votes d'un utilisateur depuis le lundi précédent
      * @param int $id_utilisateur
-     * @return int
+     * @return int Nombre de votes
      */
     public function recupNbVotesSemaineEnCoursParUtilisateurId(int $id_utilisateur):int{
         // Lundi de la semaine précédente
@@ -129,9 +129,9 @@ class Vote_CRUD
 
     /**
      * recupUnVoteSemaineEnCours permet de récupérer un
-     *  vote d'un utilisateur depuis le lundi de cette semaine
+     * Vote d'un utilisateur depuis le lundi de cette semaine
      * @param int $id_utilisateur
-     * @return int
+     * @return Vote Le Vote de l'utilisateur
      */
     public function recupUnVoteSemaineEnCours(int $id_utilisateur, int $id_motcle):Vote{
         $debutSemaine = new DateTime('monday this week');
@@ -173,8 +173,8 @@ class Vote_CRUD
                             FROM votes");
         try {
             $req_select->execute();
-            $result = $req_select->fetch(PDO::FETCH_ASSOC);
-            $nbVotes = $result["nb_votes"];
+            $result = $req_select->fetch(PDO::FETCH_OBJ);
+            $nbVotes = $result->nb_votes;
         }
         catch(PDOException $e) {
             error_log("Erreur getVotesDepuisJourParUtilisateurId : " . $e->getMessage());
@@ -184,11 +184,12 @@ class Vote_CRUD
     }
 
     /**
-     * recupMotsVotesSemainePrecedenteParUtilisateurId permet de récupérer les id des mots
+     * recupMotsVotesSemainePrecedenteParUtilisateurId
+     * permet de récupérer les id des mots
      * deja voter par l'id d'un utilisateur depuis
      * le lundi de la semaine courante
      * @param int $id_utilisateur
-     * @return int
+     * @return array Tableau contenant les id des mots
      */
     public function recupMotsVotesSemaineEnCoursParUtilisateurId(int $id_utilisateur):array{
         // Lundi de la semaine courante
@@ -203,10 +204,10 @@ class Vote_CRUD
         $listeIdMots = [];
         try {
             $req_select->execute();
-            $results = $req_select->fetchAll(PDO::FETCH_ASSOC);
+            $results = $req_select->fetchAll(PDO::FETCH_OBJ);
             if($results){
                 foreach ($results as $result){
-                    $listeIdMots[] = $result["id_motcle"];
+                    $listeIdMots[] = $result->id_motcle;
                 }
             }
         }
@@ -220,6 +221,8 @@ class Vote_CRUD
     /**
      * Récupère les mots les plus votés de la semaine précédente
      * (du lundi au dimanche précédent)
+     * @return array Tableau contenant des MotCle
+     * @throws \DateMalformedStringException si la date n'est pas en string
      */
     public function recupMotsPopulairesSemainePrecedente(): array {
         // Lundi de la semaine précédente

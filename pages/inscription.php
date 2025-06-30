@@ -35,26 +35,26 @@ if (is_a($connexion,"PDO")):
                 $notification = new BandeauNotification("ERREUR",
                     "Inscription",
                     "Votre mot de passe ne peut pas contenir votre pseudo !");
-                $notification = $notification->notificationInfo($notification);
+                $notification = $notification->afficherNotification($notification);
             }
             if($erreur == "97"){
                 $notification = new BandeauNotification("ERREUR",
                     "Inscription",
                     "L'adresse email est déjà associé à un compte existant, 
                     veuillez en saisir une autre!");
-                $notification = $notification->notificationInfo($notification);
+                $notification = $notification->afficherNotification($notification);
             }
             if($erreur == "98"){
                 $notification = new BandeauNotification("ERREUR",
                     "Inscription",
                     "Le pseudo saisie existe déjà, veuillez en choisir un autre!");
-                $notification = $notification->notificationInfo($notification);
+                $notification = $notification->afficherNotification($notification);
             }
             if($erreur == "99"){
                 $notification = new BandeauNotification("ERREUR",
                     "Inscription",
                     "Les mots de passes saisie ne sont pas identiques !");
-                $notification = $notification->notificationInfo($notification);
+                $notification = $notification->afficherNotification($notification);
             }
         endif;
         // Vérification que le pseudo et le mot de passe ne se contiennent pas mutuellement
@@ -95,7 +95,7 @@ if (is_a($connexion,"PDO")):
         if($creerUtilisateur):
             $utilisateur= $utilisateurCRUD->recupUtilisateurParPseudo($pseudo);
             $_SESSION['utilisateur'] = $utilisateur;
-            header("Location: index.php?inscription=succes");
+            header("Location: acceuil.php?inscription=succes");
         endif;
 
     }

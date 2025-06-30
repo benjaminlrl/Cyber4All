@@ -17,6 +17,9 @@ class Vote
 
     /**
      * Initialise une nouvelle instance de la classe Vote
+     * Un vote dispose d'un id d'utilisateur, d'un id de mot : obligatoire.
+     * Un id de vote autoincrémenté dans la table votes
+     * et une date de vote correspond à la date du vote
      * @param int $id_utilisateur
      * @param int $id_mot
      * @param int $id_vote
@@ -43,7 +46,8 @@ class Vote
 
     /**
      * Modifie l'id du vote actuel
-     * privée puisque non modifiable
+     * Privée afin de préserver l'intégrité
+     * des données de la base de données
      * @param int $id_vote
      * @return void
      */
@@ -53,7 +57,7 @@ class Vote
     }
 
     /**
-     * Obitent l'id de l'utilisateur du vote actuel
+     * Obtient l'id de l'utilisateur du vote actuel
      * @return int
      */
     public function getIdUtilisateur(): int
@@ -63,10 +67,12 @@ class Vote
 
     /**
      * Modifie l'id de l'utilisateur du vote actuel
+     * Privée afin de préserver l'intégrité
+     * des données de la base données
      * @param int $id_utilisateur
      * @return void
      */
-    public function setIdUtilisateur(int $id_utilisateur): void
+    private function setIdUtilisateur(int $id_utilisateur): void
     {
         $this->id_utilisateur = $id_utilisateur;
     }
@@ -81,7 +87,9 @@ class Vote
     }
 
     /**
-     * Modifie l'id de l'utilisateur du vote actuel
+     * Modifie l'id du mot du vote actuel
+     * Privée afin de préserver l'intégrité
+     * des données de la base de données
      * @param int $id_mot
      * @return void
      */
@@ -101,8 +109,8 @@ class Vote
 
     /**
      * Modifie la date du vote actuel
-     * En privé car on ne veut pas que cela soit possible.
-     * La date est généré par le sgbd ou à la creation du vote
+     * Privée afin de préserver l'intégrité
+     * des données de la base de données
      * @param DateTime $dateVote
      * @return void
      */

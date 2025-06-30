@@ -2,9 +2,7 @@
 namespace lib;
 
 /**
- *Cette classe représente l'objet User
- * Un utilisateur dispose d'un id, d'un pseudo, d'un mot de passe,
- * d'un role, d'un email optionnel nullable.
+ * Cette classe représente l'objet Utilisateur
  */
 class Utilisateur
 {
@@ -16,6 +14,9 @@ class Utilisateur
 
     /**
      * Initialise une nouvelle instance de la classe Utilisateur
+     * Un utilisateur dispose d'un id autoincrémenter par la table utilisateur,
+     * d'un pseudo, d'un mot de passe,
+     * d'un role, d'un email optionnel nullable.
      * @param int $id
      * @param string $pseudo
      * @param string $motPasse

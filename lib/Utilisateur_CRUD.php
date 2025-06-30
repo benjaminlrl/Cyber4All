@@ -79,6 +79,12 @@ class Utilisateur_CRUD
         }
         return $retour;
     }
+
+    /**
+     * valideEmail permet de vérifier si l'adresse email fourni est valide
+     * @param string $email
+     * @return string|null Retourne un email ou null
+     */
     public function valideEmail(string $email): ?string
     {
         $email = trim($email);
@@ -92,7 +98,7 @@ class Utilisateur_CRUD
      * existe déja dans la table utilisateurs
      * Retourne vraie si elle existe
      * @param string $email
-     * @return bool|null
+     * @return bool|null Retourne vraie si l'email existe déjà
      */
     public function adresseEmailExiste(string $email): ?bool{
         $email = trim($email);
@@ -121,11 +127,10 @@ class Utilisateur_CRUD
     /**
      * pseudoExiste permet de vérifier si un pseudo
      * existe déja dans la table utilisateurs
-     * Retourne vraie si elle existe
      * @param string $pseudo
-     * @return bool|null
+     * @return bool Retourne vraie si le pseudo existe déjà.
      */
-    public function pseudoExiste(string $pseudo): ?bool{
+    public function pseudoExiste(string $pseudo): bool{
         $pseudo = htmlspecialchars(trim($pseudo));
         $retour = false;
         $req_select=$this->db->prepare("SELECT pseudo FROM utilisateurs 
@@ -152,7 +157,7 @@ class Utilisateur_CRUD
      * de la table Utilisateur à partir de son id.
      * Retourne vrai si bien supprimé.
      * @param \lib\Utilisateur $unUtilisateur
-     * @return bool
+     * @return bool Retourne vraie si la suppression a réussi.
      */
     public function deleteUtilisateur(Utilisateur $unUtilisateur): bool
     {
@@ -175,12 +180,11 @@ class Utilisateur_CRUD
      * d'un pseudo, d'un role, d'un mdp,
      * d'un email optionnel et nullable.
      * Retourne vrai si bien modifié.
-     * @param \lib\Utilisateur $unUtilisateur
+     * @param Utilisateur $unUtilisateur
      * @param string $pseudo
      * @param string $role
-     * @param string $mdp
      * @param ?string $email
-     * @return bool
+     * @return bool Retourne vraie si la modification a réussi.
      */
     public function updateUtilisateur(Utilisateur $unUtilisateur, string $pseudo,
                                       string $role,  ?string $email=null): bool
@@ -224,10 +228,11 @@ class Utilisateur_CRUD
     }
 
     /**
-     * recupUtilisateurParPseudo permet de récupérer un Utilisateur à partir de son pseudo de la table utilisateurs.
+     * recupUtilisateurParPseudo permet de récupérer un
+     * Utilisateur à partir de son pseudo de la table utilisateurs.
      * Retourne un utilisateur
      * @param string $pseudo
-     * @return \lib\Utilisateur|null
+     * @return \lib\Utilisateur|null Retourne un utilisateur ou null
      */
     public function recupUtilisateurParPseudo(string $pseudo): ?Utilisateur
     {
@@ -258,10 +263,11 @@ class Utilisateur_CRUD
     }
 
     /**
-     * recupUtilisateurParID permet de récupérer un Utilisateur à partir de son id de la table utilisateurs.
+     * recupUtilisateurParID permet de récupérer un
+     * Utilisateur à partir de son id de la table utilisateurs.
      * Retourne un utilisateur
      * @param int $id
-     * @return \lib\Utilisateur|null
+     * @return \lib\Utilisateur|null Retourne un utilisateur ou null
      */
     public function recupUtilisateurParID(int $id): ?Utilisateur
     {
@@ -294,9 +300,11 @@ class Utilisateur_CRUD
     /**
      * verifUtilisateur permet de vérifier si le pseudo de l'utilisateur
      * et son mot de passe correspondent bien dans la table Utilisateur
+     * Si oui : elle retourne l'utilisateur de type Utilisateur.
+     * Sinon : elle retourne null
      * @param string $pseudo
      * @param string $mdp
-     * @return \lib\Utilisateur|null
+     * @return Utilisateur|null Retourne un utilisateur ou null
      */
     public function verifUtilisateur(string $pseudo, string $mdp): ?Utilisateur
     {
@@ -305,7 +313,7 @@ class Utilisateur_CRUD
         $mdp = trim($mdp);
 
         // Validation du format du mot de passe
-        // Une majuscule minimum, un chiffre, un symbole parmi ?!*@=%$£\[\]+\/\\\.&
+        // Une majuscule minimum, un chiffre, un symbole parmi ?!*@=%$£\[]+
         // entre 13 et 255 caractères
         $pattern = '/^(?=.*[A-Z])(?=.*[0-9])(?=.*[?!*@=%$£\[\]+\/\\\.&]).{13,255}$/';
 
@@ -352,8 +360,9 @@ class Utilisateur_CRUD
     }
 
     /**
-     * recupClassementVotes permet de recuperer tous les utilisateurs qui ont le plus voté depuis toujours
-     * @return array
+     * recupClassementVotes permet de récupérer
+     * tous les utilisateurs qui ont le plus voté depuis toujours
+     * @return array Tableau contenant des utilisateurs
      */
     public function recupClassementVotes(): array
     {

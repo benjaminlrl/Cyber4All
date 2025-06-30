@@ -27,7 +27,7 @@ class Categorie_CRUD
     /**
      * creerCategorie permet de créer une nouvelle catégorie dans la table categorie
      * @param string $nomCategorie
-     * @return bool
+     * @return bool vraie si la création a réussi
      */
     public function creerCategorie(string $nomCategorie): bool{
         $retour = false;
@@ -47,7 +47,7 @@ class Categorie_CRUD
     /**
      * supprimerCategorie permet de créer une nouvelle catégorie dans la table categorie
      * @param Categorie $categorie
-     * @return bool
+     * @return bool vraie si la suppression a réussi
      */
     public function supprimerCategorie(Categorie $categorie): bool{
         $retour = false;
@@ -67,7 +67,7 @@ class Categorie_CRUD
     /**
      * updateCategorie permet de modifier une categorie dans la table categorie
      * @param Categorie $categorie
-     * @return bool vraie si modification réussie
+     * @return bool vraie si la modification a réussie
      */
     public function updateCategorie(Categorie $categorie): bool{
         $req_update=$this->db->prepare("UPDATE categorie
@@ -89,7 +89,7 @@ class Categorie_CRUD
     /**
      * recupToutesLesCategories permet de récupérer toutes les catégories de la table categorie
      * par ordre alphabétiques
-     * @return array
+     * @return array Tableau de Categorie contenant toutes les catégories
      */
     public function recupToutesLesCategories(): array{
         $req_select=$this->db->prepare("SELECT * FROM categorie ORDER BY nom ASC");
@@ -114,9 +114,9 @@ class Categorie_CRUD
     }
 
     /**
-     * recupCategorieParID permet de récupérer la catégorie de la table categorie
-     * par son id
-     * @return array
+     * recupCategorieParID permet de récupérer la catégorie par son id
+     * de la table categorie.
+     * @return Categorie  Une Categorie
      */
     public function recupCategorieParID(int $id): Categorie{
         $req_select=$this->db->prepare("SELECT * FROM categorie 

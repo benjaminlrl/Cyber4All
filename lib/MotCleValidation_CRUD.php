@@ -30,7 +30,7 @@ class MotCleValidation_CRUD
      * Elle dispose d'un utilisateur et d'un mot
      * @param Utilisateur $utilisateur
      * @param \lib\MotCle $motCle
-     * @return bool
+     * @return bool vraie si la demande a été créer
      */
     public function creerDemandeValidation(Utilisateur $utilisateur, MotCle $motCle){
         $req_insert=$this->db->prepare("INSERT INTO motcle_validation (id_utilisateur, motcle, definition) 
@@ -55,15 +55,15 @@ class MotCleValidation_CRUD
 
     /**
      * recupToutesDemandesEnAttente permet de récupérer toutes les demandes de validation
-     * de mots en attente.
+     * de mots en en attente de validation par un admin pour les admins
      * @param Utilisateur $utilisateur
      * @param \lib\MotCle $motCle
-     * @return bool
+     * @return bool tableau contenant toutes les demandes 'en attente'
      */
     public function recupToutesDemandesEnAttente():array{
         $req_select=$this->db->prepare('SELECT * 
                                         FROM motcle_validation
-                                        WHERE statut = "En attente"');
+                                        WHERE statut = "en attente"');
         try {
             $req_select->execute();
             $results = $req_select->fetchAll(PDO::FETCH_OBJ);
@@ -94,7 +94,7 @@ class MotCleValidation_CRUD
     /**
      * recupToutesDemandesEnAttenteParUtilisateurID permet de récupérer
      * toutes les demandes de validation par l'id de l'utilisateur
-     * de mots en attente.
+     * de mots en attente de validation par un admin.
      * @param int $id_utilisateur
      * @return array
      */

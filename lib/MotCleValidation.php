@@ -45,6 +45,7 @@ class MotCleValidation
 
 
     /**
+     * Obtient l'id de la demande de validation du mot clé
      * @return int
      */
     public function getIdMotcleValidation(): int
@@ -53,15 +54,19 @@ class MotCleValidation
     }
 
     /**
+     * Modifie l'id de la demande de validation du mot clé
+     * Privée pour préserver l'intégrité des données de la base de données
      * @param int $id_motcle_validation
      * @return void
      */
-    public function setIdMotcleValidation(int $id_motcle_validation): void
+    private function setIdMotcleValidation(int $id_motcle_validation): void
     {
         $this->id_motcle_validation = $id_motcle_validation;
     }
 
     /**
+     * Obtient l'id de l'utilisateur qui soumet
+     * la demande de validation
      * @return int
      */
     public function getIdUtilisateur(): int
@@ -70,15 +75,7 @@ class MotCleValidation
     }
 
     /**
-     * @param int $id_utilisateur
-     * @return void
-     */
-    public function setIdUtilisateur(int $id_utilisateur): void
-    {
-        $this->id_utilisateur = $id_utilisateur;
-    }
-
-    /**
+     * Obtient le nom du mot soumit à la demande de validation
      * @return string
      */
     public function getMotCle(): string
@@ -87,15 +84,7 @@ class MotCleValidation
     }
 
     /**
-     * @param string $mot_cle
-     * @return void
-     */
-    public function setMotCle(string $mot_cle): void
-    {
-        $this->mot_cle = $mot_cle;
-    }
-
-    /**
+     * Obtient la definition du mot soumit à la demande de validation
      * @return string
      */
     public function getDefinition(): string
@@ -104,15 +93,7 @@ class MotCleValidation
     }
 
     /**
-     * @param string $definition
-     * @return void
-     */
-    public function setDefinition(string $definition): void
-    {
-        $this->definition = $definition;
-    }
-
-    /**
+     * Obtient date de création de la demande de validation
      * @return DateTime
      */
     public function getDateDemande(): DateTime
@@ -121,15 +102,8 @@ class MotCleValidation
     }
 
     /**
-     * @param DateTime $date_demande
-     * @return void
-     */
-    public function setDateDemande(DateTime $date_demande): void
-    {
-        $this->date_demande = $date_demande;
-    }
-
-    /**
+     * Obtient le statut du mot soumit à la demande de validation
+     * ('en attente','valider','refuser')
      * @return string
      */
     public function getStatut(): string
@@ -138,6 +112,7 @@ class MotCleValidation
     }
 
     /**
+     * Modifie le statut du mot soumit à la demande de validation
      * @param string $statut
      * @return void
      */
