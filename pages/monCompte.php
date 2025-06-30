@@ -1,10 +1,5 @@
 <?php
-include_once('../lib/Utilisateur.php');
-include_once('../lib/Utilisateur_CRUD.php');
-include_once('../lib/Connexion.php');
-include_once('../lib/BandeauNotification.php');
-
-use lib\Utilisateur;
+include_once('../includes/config.php');
 use lib\Utilisateur_CRUD;
 use lib\Connexion;
 use lib\BandeauNotification;

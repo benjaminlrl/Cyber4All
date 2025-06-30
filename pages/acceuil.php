@@ -1,10 +1,11 @@
 <?php
-include_once ('../lib/BandeauNotification.php');
+include_once(__DIR__ . '/../includes/config.php');
 use \lib\BandeauNotification;
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
 //gestion de la deconnnexion
 if(isset($_GET['deconnexion'])){
     session_destroy();

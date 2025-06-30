@@ -1,5 +1,9 @@
 <?php
 include_once(__DIR__ . '/../includes/config.php');
+use lib\Connexion;
+use lib\MotCle;
+use lib\MotCleValidation_CRUD;
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
