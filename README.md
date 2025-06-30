@@ -48,6 +48,15 @@ Le site est conçu pour être utilisé comme :
 - Employés d'entreprises
 - Particuliers soucieux de leur sécurité numérique
 - Formateurs et enseignants
+## 👥 Système de contribution communautaire
+### Connexion contributeur
+#### En tant que contributeur connecté, vous pouvez :
+
+- Voter pour mettre en avant les termes les plus utiles
+- Proposer de nouveaux mots-clés (soumis à validation)
+- Participer activement à l'enrichissement du glossaire
+- Gravir le classement communautaire
+- Rejoindre une communauté engagée dans l'éducation cybersécurité
 
 ## 🚧 Développement en cours
 ### Interface d'administration
@@ -57,7 +66,12 @@ Une interface d'administration est actuellement en développement pour permettre
 - Modération du contenu
 - Statistiques d'utilisation
 - Configuration des paramètres du site
+### Système de gamification
 
+- Points de contribution pour chaque action
+- Classement des contributeurs les plus actifs
+- Badges de reconnaissance selon l'engagement
+- Validation collaborative des nouveaux termes
 Fonctionnalité à venir prochainement...
 ## 🌐 Accès
 Le site est accessible à l'adresse : https://cyber4all.benjaminlorieul.fr/
