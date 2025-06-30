@@ -40,7 +40,10 @@
 .lexique-container.demande p:hover{
     cursor: default;
 }
-
+.compte-stats-placeholder.demande h3{
+    font-size: 2rem;
+    font-weight: 700;
+}
 .lexique__header.demande{
     display: flex;
     flex-direction: column;

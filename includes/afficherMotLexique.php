@@ -92,8 +92,10 @@ if ($id_session):
                             title="Nom du mot"><?= $mot->getMot() ?></h3>
                         <?php if(isset($utilisateur) && $utilisateur->getRole() === "contributeur"): ?>
                             <form action="communautaire.php" method="POST" class="btn-vote-communautaire">
-                                <!-- Champ caché pour passer l'ID du mot -->
+                                <!-- Champ caché pour passer l'ID du mot
+                                et si l'utilisateur est sur la page avec un mot seul-->
                                 <input type="hidden" name="id_mot" value="<?= $mot->getId() ?>">
+                                <input type="hidden" name="from_lexiqueMotSeul" value="true">
                                 <?php // Si on n'est PAS sur la page communautaire (pas de $motsPopulaires)
                                 // alors on ajoute l'input pour rediriger vers lexiques.php après vote.
                                 if(!isset($motsPopulaires)):?>

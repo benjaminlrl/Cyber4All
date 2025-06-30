@@ -65,13 +65,19 @@ if ($id_session):
             if (!$suppVote):
                 header('Location: communautaire.php?erreur=99');
             else:
-                if ($_POST['from_lexique'] === 'true'):
+                //CAS 1 : L'utilisateur vote depuis lexique.php?mot= ...
+                if($_POST['from_lexiqueMotSeul'] === 'true'):
+                    $id_mot = $_POST['id_mot'];
+                    header("Location: lexiques.php?mot=$id_mot");
+                //CAS 2 : L'utilisateur vote depuis lexique.php
+                elseif ($_POST['from_lexique'] === 'true'):
                     header("Location: lexiques.php");
+                //CAS 3 : L'utilisateur vote depuis communautaire.php
                 else:
                     header('Location: communautaire.php?success=vote_supprime');
                 endif;
             endif;
-            exit; // ← Déplacé ici pour sortir après toutes les redirections
+            exit;
         endif;
 
 // Traitement ajout de vote
@@ -82,17 +88,23 @@ if ($id_session):
             if (!$vote):
                 header('Location: communautaire.php?erreur=98');
             else:
-                if ($_POST['from_lexique'] === 'true'):
+                //CAS 1 : L'utilisateur vote depuis lexique.php?mot= ...
+                if($_POST['from_lexiqueMotSeul'] === 'true'):
+                    $id_mot = $_POST['id_mot'];
+                    header("Location: lexiques.php?mot=$id_mot");
+                //CAS 2 : L'utilisateur vote depuis lexique.php
+                elseif ($_POST['from_lexique'] === 'true'):
                     header("Location: lexiques.php");
+                //CAS 3 : L'utilisateur vote depuis communautaire.php
                 else:
                     header('Location: communautaire.php?success=vote_ajoute');
                 endif;
             endif;
-            exit; // ← Un seul exit à la fin
+            exit;
         endif;
 
     elseif ($_SERVER['REQUEST_METHOD'] === 'POST'):
-        // Si c'est une requête POST mais que l'utilisateur n'est pas connecté ou pas de token
+        // Si c'est une requête POST, mais que l'utilisateur n'est pas connecté ou pas de token
         header('Location: communautaire.php?erreur=non_autorise');
         exit();
     endif;
