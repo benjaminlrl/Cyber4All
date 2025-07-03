@@ -1,7 +1,7 @@
-lib/
-pages/
-includes/
-css/
-images/
-enTete.html
-index.php
+/lib
+/pages
+/includes
+/css
+/images
+/enTete.html
+/index.php
