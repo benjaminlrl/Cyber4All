@@ -1,1 +1,7 @@
-lib/consts.php
+lib/
+pages/
+includes/
+css/
+images/
+enTete.html
+index.php
