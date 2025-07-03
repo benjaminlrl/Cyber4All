@@ -46,8 +46,8 @@ if ($id_session):
         $utilisateur = $_SESSION['utilisateur'];
 
         if (is_a($connexion, "PDO")):
-            $crudMotClevalidation = new MotCleValidation_CRUD($connexion);
-            $demandes = $crudMotClevalidation->recupToutesDemandesParUtilisateurID($utilisateur->getid());
+            $crudMotCleValidation = new MotCleValidation_CRUD($connexion);
+            $demandes = $crudMotCleValidation->recupToutesDemandesParUtilisateurID($utilisateur->getid());
 
         endif;
     endif;

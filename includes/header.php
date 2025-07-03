@@ -20,6 +20,9 @@ $connexion = $pdo->setConnexion();
 if (is_a($connexion, "PDO")):
     $crudCategorie = new Categorie_CRUD($connexion);
     $categories = $crudCategorie->recupToutesLesCategories();
+    if(isset($_SESSION['utilisateur'])):
+        $utilisateur = $_SESSION['utilisateur'];
+    endif;
 endif
 ?>
 
@@ -77,6 +80,15 @@ endif
                         Glossaire
                     </a>
                 </li>
+                <?php if(isset($utilisateur) && $utilisateur->getRole() === "admin"):?>
+                    <li class="menu-nav__item">
+                        <a href="administration.php"
+                           title="Tout le lexique de la cybersécurité"
+                           class="menu-nav__lien">
+                            Administration
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </nav>
 
@@ -96,7 +108,7 @@ endif
                 </a>
             <?php endif; ?>
             <?php if(isset($_SESSION['utilisateur'])):?>
-                    <a href="acceuil.php?deconnexion"
+                    <a href="accueil.php?deconnexion"
                             class="btn-connexion">Se déconnecter</a>
         <?php endif; ?>
             </div>

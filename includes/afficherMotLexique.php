@@ -155,7 +155,7 @@ if ($id_session):
                 </div>
             </div>
 <?php  endif;
-    else:;//si pas de mot en url alors son affiche tous le lexique?>
+    else:;//si pas de mot en url alors son affiche tout le glossaire?>
 <div class="lexiques-wrapper">
     <?php if (!empty($mots)):
         if(!isset($_GET['categorie'])):?>

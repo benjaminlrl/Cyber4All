@@ -44,11 +44,24 @@
     font-size: 2rem;
     font-weight: 700;
 }
+.lexiques-wrapper .compte-stats-placeholder{
+    padding: 0;
+}
 .lexique__header.demande{
     display: flex;
     flex-direction: column;
     align-items: start;
  }
+
+.lexique-container.validation{
+    margin: 0.5rem 0;
+    width: 100%;
+    height: fit-content;
+}
+.lexique-container.validation input{
+    padding: 0.4rem 0.8rem;
+}
+
 .lexique-container-static{
     background: none;
     border-radius: 16px;
@@ -110,7 +123,7 @@
     display: inline-block;
     margin: 0;
 }
-
+.lexique-container.validation input,
 .btn-vote-communautaire input[type="submit"] {
     /* Base commune */
     padding: 0.5rem 1.5rem;
@@ -123,37 +136,41 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    min-width: 140px;
+    min-width: 100px;
     position: relative;
     overflow: hidden;
 }
 
 /* Bouton VOTER (Vert) */
+.lexique-container.validation input[type="submit"][value="Valider"],
 .btn-vote-communautaire input[type="submit"][value="Voter"] {
     background: linear-gradient(135deg, var(--green-emerald), var(--green-emerald-dark));
     color: var(--white);
     border: 2px solid var(--green-emerald);
 }
 
+.lexique-container.validation input[type="submit"][value="Valider"]:hover,
 .btn-vote-communautaire input[type="submit"][value="Voter"]:hover {
     background: linear-gradient(135deg, var(--green-emerald-dark), var(--green-tropical));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
     border-color: var(--green-emerald-dark);
 }
-
+.lexique-container.validation input[type="submit"][value="Valider"]:active,
 .btn-vote-communautaire input[type="submit"][value="Voter"]:active {
     transform: translateY(0);
     box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
 }
 
 /* Bouton SUPPRIMER VOTE (Rouge) */
+.lexique-container.validation input[type="submit"][value="Refuser"],
 .btn-vote-communautaire input[type="submit"][value="Supprimer vote"] {
     background: linear-gradient(135deg, var(--red-coral), var(--red-coral-dark));
     color: var(--white);
     border: 2px solid var(--red-coral);
 }
 
+.lexique-container.validation input[type="submit"][value="Refuser"]:hover,
 .btn-vote-communautaire input[type="submit"][value="Supprimer vote"]:hover {
     background: linear-gradient(135deg, var(--red-coral-dark), var(--red-crimson));
     transform: translateY(-2px);
@@ -161,12 +178,14 @@
     border-color: var(--red-coral-dark);
 }
 
+.lexique-container.validation input[type="submit"][value="Refuser"]:active,
 .btn-vote-communautaire input[type="submit"][value="Supprimer vote"]:active {
     transform: translateY(0);
     box-shadow: 0 2px 10px rgba(255, 118, 117, 0.2);
 }
 
 /* Effet de focus pour l'accessibilité */
+.lexique-container.validation input[type="submit"]:focus,
 .btn-vote-communautaire input[type="submit"]:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -248,6 +267,14 @@
 }
 .word-list.statistique{
     margin-top: .5rem;
+    padding: .2rem;
+    border-radius: 18px;
+    background: none;
+}
+
+.word-list{
+    margin-top: .5rem;
+    background: none;
 }
 .lexiques__title-static,
 .lexique__title {
